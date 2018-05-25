@@ -35,9 +35,9 @@ void			print_us_1(wchar_t *s, size_t *count, size_t size)
 	len = ft_w_strlen(s);
 	while (s[i] != '\0' && i < len)
 	{
-		if (MB_CUR_MAX == 1 && ival < 127)
+		if (MB_CUR_MAX == 1 && s[i] < 127)
 		{
-			write(1, &ival, 1);
+			write(1, &s[i], 1);
 			(*count)++;
 			check += 1;
 		}

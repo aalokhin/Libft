@@ -133,7 +133,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (NULL);
 }
 
-void	//ft_strdel(char **as)
+void	ft_strdel(char **as)
 {
 	if (as != NULL && *as != NULL)
 	{
