@@ -41,6 +41,8 @@ typedef struct	s_flags
 	char		specifier;
 }				t_flags;
 
+void			dec2(int len, char **res, t_flags *box);
+void			dec1(intmax_t *ival, t_flags *box);
 void			fill_mods(char *str, int i, t_flags *box);
 int				collect(char *str, int i);
 void			ft_uns(va_list ap, t_flags *box, size_t *count);
@@ -71,7 +73,6 @@ void			ft_hash_x(char **str);
 void			octal(va_list ap, t_flags *box, size_t *count);
 void			ft_hash_o(char **str);
 void			fill_struct(t_flags *box);
-
 void			ft_putchar2(char c, size_t *count);
 int				ft_m_putchar(t_find	*p);
 void			ft_putstr2(char const *s, size_t *count);
@@ -81,10 +82,8 @@ char			*ft_strnew(size_t size);
 void			charik(va_list ap, t_flags *box, size_t *count);
 void			ft_pre(intmax_t n, size_t *count, t_flags *box);
 void			ft_dec_wp(char	**res, t_flags *box);
-
 void			ft_mod(intmax_t *n, t_flags *box);
 void			decimal(va_list ap, t_flags *box, size_t *count);
-
 void			ft_percent_sign(t_find	*f, va_list ap, t_flags *box);
 void			ft_fill_width(t_find *f, t_flags *box);
 void			fill_precision(char *str, t_flags *box, int *vasia);
@@ -92,11 +91,8 @@ void			ft_find_flags(char *str, t_flags *box, int *vasia);
 void			ft_find_mods(char *str, t_flags *box, int *vasia);
 void			ft_found(t_find *f, va_list ap, t_flags *box);
 void			fill_flags(char *str, int i, t_flags *box);
-
 int				ft_printf(const char *format, ...);
-
 char			*ft_itoa_m(intmax_t value);
-
 size_t			ft_strlen(const char *s);
 char			*ft_strdup(const char *s1);
 int				ft_strcmp(const char *s11, const char *s22);

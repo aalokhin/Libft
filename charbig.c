@@ -22,14 +22,11 @@ char			*ft_char_wp(wchar_t ival, t_flags *box)
 
 void			print_char(wchar_t ival, size_t *count)
 {
-	// if (ival <= 127)
-	if (MB_CUR_MAX == 1 && ival < 127)
+	if (ival <= 127)
 	{
 		write(1, &ival, 1);
 		(*count)++;
 	}
-	else if (MB_CUR_MAX == 1)
-       return ;
 	else if (ival > 127 && ival <= 2047)
 		u2(2, ival, count);
 	else if (ival > 2047 && ival <= 65535)
@@ -47,9 +44,15 @@ void			char_b(va_list ap, t_flags *box, size_t *count)
 	res = ft_char_wp(ival, box);
 	if (!box->minus)
 		ft_putstr2(res, count);
-	print_char(ival, count);
+	if (MB_CUR_MAX == 1 && ival < 255)
+	{
+		write(1, &ival, 1);
+		(*count)++;
+	}
+	else
+		print_char(ival, count);
 	if (box->minus)
 		ft_putstr2(res, count);
-	//ft_strdel(&res);
+	ft_strdel(&res);
 	fill_struct(box);
 }

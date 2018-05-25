@@ -35,14 +35,12 @@ void			print_us_1(wchar_t *s, size_t *count, size_t size)
 	len = ft_w_strlen(s);
 	while (s[i] != '\0' && i < len)
 	{
-		if (MB_CUR_MAX == 1 && s[i] < 127)
+		if (s[i] <= 127 && (check + 1) <= size)
 		{
 			write(1, &s[i], 1);
 			(*count)++;
 			check += 1;
 		}
-		else if (MB_CUR_MAX == 1)
-			return ;		
 		else if (s[i] > 127 && s[i] <= 2047 && (check + 2) <= size)
 		{
 			u2(2, s[i], count);

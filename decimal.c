@@ -1,5 +1,30 @@
 #include "printf.h"
 
+void			dec2(int len, char **res, t_flags *box)
+{
+	char	*pre;
+
+	pre = NULL;
+	if (box->sign != 0)
+	{
+		pre = ft_strnew(1);
+		ft_memset(pre, box->sign, 1);
+		pre[1] = '\0';
+		(*res) = ft_strjoin(pre, *res);
+	}
+	if ((int)box->wid > (len = ft_strlen(*res)))
+	{
+		pre = ft_strnew(box->wid - len);
+		ft_memset(pre, ' ', box->wid - len);
+		pre[box->wid - len] = '\0';
+		if (box->minus)
+			(*res) = ft_strjoin(*res, pre);
+		else
+			(*res) = ft_strjoin(pre, *res);
+	}
+	////ft_strdel(&pre);
+}
+
 void			ft_dec_wp(char **res, t_flags *box)
 {
 	int		len;
@@ -18,26 +43,24 @@ void			ft_dec_wp(char **res, t_flags *box)
 		ft_memset(pre, '0', box->pre - len);
 		pre[box->pre - len] = '\0';
 		(*res) = ft_strjoin(pre, *res);
-		// ////ft_strdel(&pre);
 	}
-	if (box->sign != 0)
+	////ft_strdel(&pre);
+	dec2(len, res, box);
+}
+
+void			dec1(intmax_t *ival, t_flags *box)
+{
+	if ((*ival) < 0)
 	{
-		pre = ft_strnew(1);
-		ft_memset(pre, box->sign, 1);
-		pre[1] = '\0';
-		(*res) = ft_strjoin(pre, *res);
-		// ////ft_strdel(&pre);
+		box->sign = '-';
+		(*ival) = -(*ival);
 	}
-	if ((int)box->wid > (len = ft_strlen(*res)))
+	else
 	{
-		pre = ft_strnew(box->wid - len);
-		ft_memset(pre, ' ', box->wid - len);
-		pre[box->wid - len] = '\0';
-		if (box->minus)
-			(*res) = ft_strjoin(*res, pre);
-		else
-			(*res) = ft_strjoin(pre, *res);
-		// ////ft_strdel(&pre);
+		if (box->plus == 1)
+			box->sign = '+';
+		if (box->space == 1)
+			box->sign = ' ';
 	}
 }
 
@@ -51,18 +74,7 @@ void			decimal(va_list ap, t_flags *box, size_t *count)
 		box->zero = 0;
 	ival = va_arg(ap, intmax_t);
 	ft_mod(&ival, box);
-	if (ival < 0)
-	{
-		box->sign = '-';
-		ival = -ival;
-	}
-	else
-	{
-		if (box->plus == 1)
-			box->sign = '+';
-		if (box->space == 1)
-			box->sign = ' ';
-	}
+	dec1(&ival, box);
 	ival2 = (uintmax_t)ival;
 	if (box->dot == 1 && box->pre == 0 && ival == 0)
 		res = ft_strdup("");
