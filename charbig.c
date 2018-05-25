@@ -44,7 +44,7 @@ void			char_b(va_list ap, t_flags *box, size_t *count)
 	res = ft_char_wp(ival, box);
 	if (!box->minus)
 		ft_putstr2(res, count);
-	if (MB_CUR_MAX == 1 && ival < 255)
+	if (MB_CUR_MAX == 1 && ival <= 127)
 	{
 		write(1, &ival, 1);
 		(*count)++;
