@@ -12,6 +12,7 @@ char			*ft_str_wp(char *ival, t_flags *box)
 	{
 		res = ft_strnew(box->pre);
 		ft_strncpy(res, ival, box->pre);
+		res[box->pre] = '\0';
 	}
 	else
 		res = ft_strdup(ival);
@@ -22,10 +23,7 @@ char			*ft_str_wp(char *ival, t_flags *box)
 			pre = ft_memset(pre, '0', box->wid - len);
 		else
 			pre = ft_memset(pre, ' ', box->wid - len);
-		if (box->minus)
-			res = ft_strjoin(res, pre);
-		else
-			res = ft_strjoin(pre, res);
+		res = (box->minus) ? ft_strjoin(res, pre) : ft_strjoin(pre, res);
 	}
 	return (res);
 }
@@ -44,5 +42,6 @@ void			stroka(va_list ap, t_flags *box, size_t *count)
 	else
 		res = ft_str_wp(ival, box);
 	ft_putstr2(res, count);
+	ft_strdel(&res);
 	fill_struct(box);
 }

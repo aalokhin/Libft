@@ -24,31 +24,6 @@ size_t			count_check(wchar_t *s, size_t size)
 	return (size - check);
 }
 
-char			*ft_ls_wp(wchar_t *ival, t_flags *box)
-{
-	size_t		len;
-	size_t		i;
-	size_t		dif;
-	char		*res;
-
-	dif = 0;
-	len = ft_w_strlen(ival);
-	i = 0;
-	res = NULL;
-	if (box->pre < len && box->pre != 0 && len != 0)
-		len = box->pre;
-	if (box->wid > len)
-	{
-		res = ft_strnew(box->wid - len);
-		dif = count_check(ival, len);
-		if (box->zero)
-			res = ft_memset(res, '0', box->wid - len + dif);
-		else
-			res = ft_memset(res, ' ', box->wid - len + dif);
-	}
-	return (res);
-}
-
 void			print_us_1(wchar_t *s, size_t *count, size_t size)
 {
 	size_t		i;
@@ -85,6 +60,32 @@ void			print_us_1(wchar_t *s, size_t *count, size_t size)
 	}
 }
 
+char			*ft_ls_wp(wchar_t *ival, t_flags *box)
+{
+	size_t		len;
+	size_t		i;
+	size_t		dif;
+	char		*res;
+
+	dif = 0;
+	len = ft_w_strlen(ival);
+	i = 0;
+	res = NULL;
+	if (box->pre < len && box->pre != 0 && len != 0)
+		len = box->pre;
+	if (box->wid > len)
+	{
+		res = ft_strnew(box->wid - len);
+		dif = count_check(ival, len);
+		if (box->zero)
+			res = ft_memset(res, '0', box->wid - len + dif);
+		else
+			res = ft_memset(res, ' ', box->wid - len + dif);
+		res[box->wid - len + dif] = '\0';
+	}
+	return (res);
+}
+
 void			stroka_l(va_list ap, t_flags *box, size_t *count)
 {
 	size_t		len;
@@ -112,5 +113,6 @@ void			stroka_l(va_list ap, t_flags *box, size_t *count)
 	print_us_1(ival, count, len);
 	if (box->minus)
 		ft_putstr2(res, count);
+	ft_strdel(&res);
 	fill_struct(box);
 }

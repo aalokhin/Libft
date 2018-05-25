@@ -5,7 +5,7 @@ void		ft_find_flags(char *str, t_flags *box, int *vasia)
 	int		i;
 
 	i = (*vasia);
-	while (str[i] && !(SPECIFIER(str[i])))
+	while (str[i] && SKIP(str[i]))
 	{
 		if (FLAGS(str[i]))
 			fill_flags(str, i, box);

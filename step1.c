@@ -5,11 +5,15 @@ void		fill_precision(char *str, t_flags *box, int *vasia)
 	int		i;
 
 	i = (*vasia);
-	while (str[i] && !(SPECIFIER(str[i])) && str[i] != '.')
+	while (str[i] && str[i] != '.')
+	{
+		if (!(SKIP(str[i])) || SPECIFIER(str[i]))
+			return ;
 		i++;
+	}
 	if (str[i] == '.')
 		box->dot = 1;
-	while (str[i] && str[i] != '%' && !(SPECIFIER(str[i])))
+	while (str[i] && !(!(SKIP(str[i])) || SPECIFIER(str[i])))
 		i++;
 	while (str[i - 1] && str[i - 1] != '.')
 		i--;
@@ -18,8 +22,8 @@ void		fill_precision(char *str, t_flags *box, int *vasia)
 
 int			collect(char *s, int i)
 {
-	int		len;
-	char	*nbr;
+	size_t		len;
+	char		*nbr;
 
 	len = 0;
 	while (s[i] && ft_isdigit(s[i]))
@@ -36,7 +40,9 @@ int			collect(char *s, int i)
 		nbr[--len] = s[i];
 		i--;
 	}
-	return (ft_atoi(nbr));
+	len = ft_atoi(nbr);
+	ft_strdel(&nbr);
+	return (len);
 }
 
 void		ft_fill_width(t_find *f, t_flags *box)
@@ -44,15 +50,44 @@ void		ft_fill_width(t_find *f, t_flags *box)
 	int		i;
 
 	i = f->va;
-	while (f->s[i] == '%' || (f->s[i] != '.' && !(SPECIFIER(f->s[i]))))
+	while (f->s[i] && SKIP(f->s[i]))
 	{
+		if (f->s[i] == '.')
+			return ;
 		if (ft_isdigit(f->s[i]) && f->s[i] != '0')
-			break ;
+		{
+			box->wid = collect(f->s, i);
+			return ;
+		}
 		i++;
 	}
-	if (f->s[i] == '.')
-		return ;
-	box->wid = collect(f->s, i);
+}
+
+void		fill_mods(char *str, int i, t_flags *box)
+{
+	while (str[i] && MOD(str[i]))
+	{
+		if (str[i] == 'h' && str[i + 1] == 'h')
+		{
+			box->mod = (box->mod == 0) ? 'H' : box->mod;
+			i++;
+		}
+		else if (str[i] == 'h')
+			box->mod = (box->mod == 0 || box->mod == 'H') ? 'h' : box->mod;
+		else if (str[i] == 'l' && str[i + 1] == 'l')
+		{
+			box->mod = (box->mod != 'j' && box->mod != 'z') ? 'L' : box->mod;
+			i++;
+		}
+		else if (str[i] == 'l')
+			box->mod = (box->mod == 0 || box->mod == 'h' || box->mod == 'H')\
+		? 'l' : box->mod;
+		else if (str[i] == 'j')
+			box->mod = (box->mod != 'z') ? 'j' : box->mod;
+		else if (str[i] == 'z')
+			box->mod = 'z';
+		i++;
+	}
 }
 
 void		fill_flags(char *str, int i, t_flags *box)
@@ -80,28 +115,13 @@ void		ft_find_mods(char *str, t_flags *box, int *vasia)
 	int		i;
 
 	i = (*vasia);
-	while (str[i] && !(SPECIFIER(str[i])) && !(MOD(str[i])))
-		i++;
-	while (str[i] && MOD(str[i]))
+	while (str[i] && SKIP(str[i]))
 	{
-		if (str[i] == 'h' && str[i + 1] == 'h')
+		if (MOD(str[i]))
 		{
-			box->mod = (box->mod == 0) ? 'H' : box->mod;
-			i++;
+			fill_mods(str, i, box);
+			return ;
 		}
-		else if (str[i] == 'h')
-			box->mod = (box->mod == 0 || box->mod == 'H') ? 'h' : box->mod;
-		else if (str[i] == 'l' && str[i + 1] == 'l')
-		{
-			box->mod = (box->mod != 'j' && box->mod != 'z') ? 'L' : box->mod;
-			i++;
-		}
-		else if (str[i] == 'l')
-			box->mod = (box->mod == 0 || box->mod == 'h' || box->mod == 'H') ? 'l' : box->mod;
-		else if (str[i] == 'j')
-			box->mod = (box->mod != 'z') ? 'j' : box->mod;
-		else if (str[i] == 'z')
-			box->mod = 'z';
 		i++;
 	}
 }

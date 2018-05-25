@@ -17,6 +17,8 @@
 
 # define ELSE(c) (FLAGS(c) || c == '.' || c == '%' || MOD(c) || ft_isdigit(c))
 
+# define SKIP(c) (FLAGS(c) || c == '.' || MOD(c) || ft_isdigit(c)) //not a specifier or else
+
 typedef	struct	s_find
 {
 	char		*s;
@@ -39,6 +41,7 @@ typedef struct	s_flags
 	char		specifier;
 }				t_flags;
 
+void			fill_mods(char *str, int i, t_flags *box);
 int				collect(char *str, int i);
 void			ft_uns(va_list ap, t_flags *box, size_t *count);
 void			ft_invalid(int	ival, t_flags *box, size_t *count);

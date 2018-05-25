@@ -47,5 +47,6 @@ void			char_b(va_list ap, t_flags *box, size_t *count)
 	print_char(ival, count);
 	if (box->minus)
 		ft_putstr2(res, count);
+	ft_strdel(&res);
 	fill_struct(box);
 }
