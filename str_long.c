@@ -35,12 +35,14 @@ void			print_us_1(wchar_t *s, size_t *count, size_t size)
 	len = ft_w_strlen(s);
 	while (s[i] != '\0' && i < len)
 	{
-		if (s[i] <= 127 && (check + 1) <= size)
+		if (MB_CUR_MAX == 1 && ival < 127)
 		{
-			write(1, &s[i], 1);
+			write(1, &ival, 1);
 			(*count)++;
 			check += 1;
 		}
+		else if (MB_CUR_MAX == 1)
+			return ;		
 		else if (s[i] > 127 && s[i] <= 2047 && (check + 2) <= size)
 		{
 			u2(2, s[i], count);
@@ -113,6 +115,6 @@ void			stroka_l(va_list ap, t_flags *box, size_t *count)
 	print_us_1(ival, count, len);
 	if (box->minus)
 		ft_putstr2(res, count);
-	ft_strdel(&res);
+	//ft_strdel(&res);
 	fill_struct(box);
 }

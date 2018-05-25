@@ -35,6 +35,6 @@ void				octal(va_list ap, t_flags *box, size_t *count)
 		ft_hash_o(&res);
 	ft_dec_wp(&res, box);
 	ft_putstr2(res, count);
-	ft_strdel(&res);
+	//ft_strdel(&res);
 	fill_struct(box);
 }
