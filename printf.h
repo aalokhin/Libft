@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   printf.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aalokhin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/05/26 14:59:15 by aalokhin          #+#    #+#             */
+/*   Updated: 2018/05/26 14:59:17 by aalokhin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
@@ -18,7 +30,6 @@
 # define ELSE(c) (FLAGS(c) || c == '.' || c == '%' || MOD(c) || ft_isdigit(c))
 
 # define SKIP(c) (FLAGS(c) || c == '.' || MOD(c) || ft_isdigit(c))
-
 
 # include <unistd.h>
 # include <stdlib.h>

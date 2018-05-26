@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   str.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aalokhin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/05/26 14:56:35 by aalokhin          #+#    #+#             */
+/*   Updated: 2018/05/26 14:56:37 by aalokhin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "printf.h"
 
 char			*ft_str_wp(char *ival, t_flags *box)
@@ -23,6 +35,7 @@ char			*ft_str_wp(char *ival, t_flags *box)
 			pre = ft_memset(pre, '0', box->wid - len);
 		else
 			pre = ft_memset(pre, ' ', box->wid - len);
+		pre[box->wid - len] = '\0';
 		res = (box->minus) ? ft_strjoin(res, pre) : ft_strjoin(pre, res);
 		ft_strdel(&pre);
 	}
@@ -43,6 +56,6 @@ void			stroka(va_list ap, t_flags *box, size_t *count)
 	else
 		res = ft_str_wp(ival, box);
 	ft_putstr2(res, count);
-	//ft_strdel(&res); //ft.com
+	ft_strdel(&res); //ft.com
 	fill_struct(box);
 }

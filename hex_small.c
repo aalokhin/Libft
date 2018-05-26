@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   hex_small.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aalokhin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/05/26 14:57:54 by aalokhin          #+#    #+#             */
+/*   Updated: 2018/05/26 14:57:56 by aalokhin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "printf.h"
 
 void				ft_hash_xs(char **str)
@@ -22,7 +34,6 @@ void				hexs1(char **res, uintmax_t ival, t_flags *box)
 {
 	if (box->hash && (box->zero || box->pre > box->wid))
 	{
-		
 		box->wid -= 2;
 		ft_dec_wp(res, box);
 		ft_hash_xs(res);
@@ -30,7 +41,6 @@ void				hexs1(char **res, uintmax_t ival, t_flags *box)
 	else if ((box->hash && !box->zero &&\
 	!(box->pre == 0 && ival == 0 && box->wid == 0)))
 	{
-
 		ft_hash_xs(res);
 		ft_dec_wp(res, box);
 	}
@@ -49,12 +59,10 @@ void				hex_s(va_list ap, t_flags *box, size_t *count)
 	ival = va_arg(ap, uintmax_t);
 	ft_mod_u(&ival, box);
 	box->sign = 0;
-
 	if (box->dot == 1 && box->pre == 0 && ival == 0)
 		res = ft_strdup("");
 	else
 		res = ft_itoa_base_small(ival, 16);
-
 	hexs1(&res, ival, box);
 	ft_putstr2(res, count);
 	ft_strdel(&res);

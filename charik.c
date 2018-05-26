@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   charik.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aalokhin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/05/26 15:01:20 by aalokhin          #+#    #+#             */
+/*   Updated: 2018/05/26 15:01:23 by aalokhin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "printf.h"
 
 void		ft_found(t_find *f, va_list ap, t_flags *box)
@@ -36,7 +48,6 @@ void		charik(va_list ap, t_flags *box, size_t *count)
 		box->wid--;
 	res = ft_str_wp(res, box);
 	ft_putstr2(res, count);
-	
 	if (ival == 0)
 		ft_putchar2(ival, count);
 	ft_strdel(&res);
