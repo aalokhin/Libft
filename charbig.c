@@ -16,6 +16,7 @@ char			*ft_char_wp(wchar_t ival, t_flags *box)
 			res = ft_memset(res, '0', box->wid - len);
 		else
 			res = ft_memset(res, ' ', box->wid - len);
+		res[box->wid - len] = '\0';
 	}
 	return (res);
 }
@@ -44,7 +45,7 @@ void			char_b(va_list ap, t_flags *box, size_t *count)
 	res = ft_char_wp(ival, box);
 	if (!box->minus)
 		ft_putstr2(res, count);
-	if (MB_CUR_MAX == 1 && ival <= 255)
+	if (MB_CUR_MAX == 1 && ival <= 127)
 	{
 		write(1, &ival, 1);
 		(*count)++;
@@ -53,6 +54,6 @@ void			char_b(va_list ap, t_flags *box, size_t *count)
 		print_char(ival, count);
 	if (box->minus)
 		ft_putstr2(res, count);
-	//ft_strdel(&res);
+	ft_strdel(&res);
 	fill_struct(box);
 }

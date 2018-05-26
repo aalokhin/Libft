@@ -8,7 +8,7 @@ CC = @gcc
 
 NAME = libftprintf.a
 
-SRC =  charbig.c str_long.c decimal.c  unicode.c step1.c printf.c help_func.c liba.c pre.c uns.c hex_small.c hexic.c octic.c charik.c str.c
+SRC =  var_itoa.c charbig.c str_long.c decimal.c  unicode.c step1.c printf.c help_func.c liba.c pre.c uns.c hex_small.c hexic.c octic.c charik.c str.c
 
 OBJ = $(SRC:.c=.o)
 

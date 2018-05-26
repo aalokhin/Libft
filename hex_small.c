@@ -16,6 +16,24 @@ void				ft_hash_xs(char **str)
 		(*str)[i++] = res[j++];
 }
 
+void				hexs1(char **res, uintmax_t ival, t_flags *box)
+{
+	if (box->hash && (box->zero || box->pre > box->wid))
+	{
+		box->wid -= 2;
+		ft_dec_wp(res, box);
+		ft_hash_xs(res);
+	}
+	else if ((box->hash && !box->zero &&\
+	!(box->pre == 0 && ival == 0 && box->wid == 0)))
+	{
+		ft_hash_xs(res);
+		ft_dec_wp(res, box);
+	}
+	else
+		ft_dec_wp(res, box);
+}
+
 void				hex_s(va_list ap, t_flags *box, size_t *count)
 {
 	uintmax_t		ival;
@@ -31,21 +49,7 @@ void				hex_s(va_list ap, t_flags *box, size_t *count)
 		res = ft_strdup("");
 	else
 		res = ft_itoa_base_small(ival, 16);
-	if (box->hash && (box->zero || box->pre > box->wid))
-	{
-		box->wid -= 2;
-		ft_dec_wp(&res, box);
-		ft_hash_xs(&res);
-	}
-	else if ((box->hash && !box->zero &&\
-	!(box->pre == 0 && ival == 0 && box->wid == 0)))
-	{
-		ft_hash_xs(&res);
-		ft_dec_wp(&res, box);
-	}
-	else
-		ft_dec_wp(&res, box);
+	hexs1(&res, ival, box);
 	ft_putstr2(res, count);
-	////ft_strdel(&res);
 	fill_struct(box);
 }

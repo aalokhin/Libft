@@ -126,45 +126,9 @@ void		ft_find_mods(char *str, t_flags *box, int *vasia)
 	}
 }
 
-void		ft_percent_sign(t_find *f, va_list ap, t_flags *box)
+void		percent_sign3(t_find *f, va_list ap, t_flags *box)
 {
-	while (f->s[f->va] != '\0' && !SPECIFIER(f->s[f->va]))
-	{
-		if (!(ELSE(f->s[f->va])))
-		{
-			ft_invalid(f->s[f->va], box, &(f->count));
-			f->va += 1;
-			return ;
-		}
-		if (f->s[f->va] == '%')
-		{
-			f->va += 1;
-			ft_invalid('%', box, &(f->count));
-			return ;
-		}
-		f->va++;
-	}
-	if ((f->s[f->va] == 's' && box->mod == 'l') || f->s[f->va] == 'S')
-		stroka_l(ap, box, &(f->count));
-	else if (f->s[f->va] == 's')
-		stroka(ap, box, &(f->count));
-	else if (f->s[f->va] == 'd')
-		decimal(ap, box, &(f->count));
-	else if (f->s[f->va] == 'D')
-	{
-		box->mod = 'l';
-		decimal(ap, box, &(f->count));
-	}
-	else if (f->s[f->va] == 'o')
-		octal(ap, box, &(f->count));
-	else if (f->s[f->va] == 'O')
-	{
-		box->mod = 'l';
-		octal(ap, box, &(f->count));
-	}
-	else if (f->s[f->va] == 'u')
-		ft_uns(ap, box, &(f->count));
-	else if (f->s[f->va] == 'U')
+	if (f->s[f->va] == 'U')
 		ft_uns_b(ap, box, &(f->count));
 	else if (f->s[f->va] == 'x')
 		hex_s(ap, box, &(f->count));
@@ -185,6 +149,74 @@ void		ft_percent_sign(t_find *f, va_list ap, t_flags *box)
 	}
 	else if (f->s[f->va] == 'i')
 		decimal(ap, box, &(f->count));
+}
+
+void		percent_sign2(t_find *f, va_list ap, t_flags *box)
+{
+	if ((f->s[f->va] == 's' && box->mod == 'l') || f->s[f->va] == 'S')
+		stroka_l(ap, box, &(f->count));
+	else if (f->s[f->va] == 's')
+		stroka(ap, box, &(f->count));
+	else if (f->s[f->va] == 'd')
+		decimal(ap, box, &(f->count));
+	else if (f->s[f->va] == 'D')
+	{
+		box->mod = 'l';
+		decimal(ap, box, &(f->count));
+	}
+	else if (f->s[f->va] == 'o')
+		octal(ap, box, &(f->count));
+	else if (f->s[f->va] == 'O')
+	{
+		box->mod = 'l';
+		octal(ap, box, &(f->count));
+	}
+	else if (f->s[f->va] == 'u')
+		ft_uns(ap, box, &(f->count));
+	else
+		percent_sign3(f, ap, box);
+}
+
+void		ft_percent_sign(t_find *f, va_list ap, t_flags *box)
+{
+	while (f->s[f->va] != '\0' && !SPECIFIER(f->s[f->va]))
+	{
+		if (!(ELSE(f->s[f->va])))
+		{
+			ft_invalid(f->s[f->va], box, &(f->count));
+			f->va += 1;
+			return ;
+		}
+		if (f->s[f->va] == '%')
+		{
+			f->va += 1;
+			ft_invalid('%', box, &(f->count));
+			return ;
+		}
+		f->va++;
+	}
+	percent_sign2(f, ap, box);
+	// if ((f->s[f->va] == 's' && box->mod == 'l') || f->s[f->va] == 'S')
+	// 	stroka_l(ap, box, &(f->count));
+	// else if (f->s[f->va] == 's')
+	// 	stroka(ap, box, &(f->count));
+	// else if (f->s[f->va] == 'd')
+	// 	decimal(ap, box, &(f->count));
+	// else if (f->s[f->va] == 'D')
+	// {
+	// 	box->mod = 'l';
+	// 	decimal(ap, box, &(f->count));
+	// }
+	// else if (f->s[f->va] == 'o')
+	// 	octal(ap, box, &(f->count));
+	// else if (f->s[f->va] == 'O')
+	// {
+	// 	box->mod = 'l';
+	// 	octal(ap, box, &(f->count));
+	// }
+	// else if (f->s[f->va] == 'u')
+	// 	ft_uns(ap, box, &(f->count));
+	
 	if (f->s[f->va] != '\0')
 		f->va++;
 }

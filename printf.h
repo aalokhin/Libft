@@ -9,15 +9,23 @@
 
 # define MOD(c) (c == 'h' || c == 'l' || c == 'j' || c == 'z')
 
-# define SPECIFIER(c) (c == 'd' || c == 'D'|| c == 'i' ||\
- c == 'c' || c == 'C' || c == 's' || c == 'S' || c == 'u' ||\
- c == 'U' || c == 'x' || c == 'X' || c == 'o' || c == 'O' || c == 'p')
+# define SPR1(c) (c == 'd' || c == 'D'|| c == 'i' || c == 'c')
+
+# define SPR2(c) (c == 'C' || c == 's' || c == 'S' || c == 'u')
+
+# define SPR3(c) (c == 'U' || c == 'x' || c == 'X')
+
+# define SPR4(c) (c == 'o' || c == 'O' || c == 'p')
+
+# define SPECIFIER(c) (SPR1(c) || SPR2(c) || SPR3(c) || SPR4(c))
 
 # define FLAGS(a) (a == '#' || a == '0' || a == ' ' || a == '-' || a == '+')
 
 # define ELSE(c) (FLAGS(c) || c == '.' || c == '%' || MOD(c) || ft_isdigit(c))
 
-# define SKIP(c) (FLAGS(c) || c == '.' || MOD(c) || ft_isdigit(c)) //not a specifier or else
+# define SKIP(c) (FLAGS(c) || c == '.' || MOD(c) || ft_isdigit(c))
+
+//not a specifier or else
 
 typedef	struct	s_find
 {
@@ -41,6 +49,7 @@ typedef struct	s_flags
 	char		specifier;
 }				t_flags;
 
+void			hexs1(char **res, uintmax_t ival, t_flags *box);
 void			dec2(int len, char **res, t_flags *box);
 void			dec1(intmax_t *ival, t_flags *box);
 void			fill_mods(char *str, int i, t_flags *box);

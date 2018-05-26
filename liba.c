@@ -36,7 +36,6 @@ int		ft_atoi(const char *str)
 	return (res);
 }
 
-
 void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
 	size_t			i;
@@ -67,8 +66,6 @@ void	*ft_bzero(void *s, size_t n)
 	return (s2);
 }
 
-
-
 char	*ft_strcpy(char *dst, const char *src)
 {
 	int i;
@@ -83,7 +80,6 @@ char	*ft_strcpy(char *dst, const char *src)
 	return (dst);
 }
 
-
 void	*ft_memset(void *str, int c, size_t n)
 {
 	size_t			i;
@@ -93,14 +89,11 @@ void	*ft_memset(void *str, int c, size_t n)
 	s = (unsigned char *)str;
 	while (i < n)
 	{
-		
 		s[i] = c;
 		i++;
 	}
-	//printf("\ni>>>memset%zu\n", i);
 	return ((void *)s);
 }
-
 
 char	*ft_strcat(char *s1, const char *s2)
 {
@@ -162,7 +155,6 @@ char	*ft_strdup(const char *s1)
 	return (s2);
 }
 
-
 int		ft_strcmp(const char *s11, const char *s22)
 {
 	size_t			i;
@@ -188,7 +180,6 @@ int		ft_isdigit(int c)
 	return (1);
 }
 
-
 char	*ft_strncpy(char *dst, const char *src, size_t len)
 {
 	size_t i;
@@ -201,17 +192,15 @@ char	*ft_strncpy(char *dst, const char *src, size_t len)
 	}
 	while (i < len)
 	{
-		
 		dst[i] = '\0';
 		i++;
 	}
 	return (dst);
 }
 
-
 char	*ft_strnew(size_t size)
 {
-	char	*str;
+	char		*str;
 	size_t		i;
 
 	i = 0;
@@ -235,90 +224,4 @@ size_t		ft_strlen(const char *s)
 	while (s[i] != '\0')
 		i++;
 	return (i);
-}
-
-
-char *ft_itoa_m(intmax_t value) //check in libft
-{
-	intmax_t	tmp;
-	int 		len;
-	int 		sign;
-	char 		*str;
-
-	
-	
-	sign = 0;
-	len = 2;
-	tmp = value;
-	if(tmp < 0)
-	{
-		sign = 1;
-		tmp = -1 * tmp;
-	}
-	value = tmp;
-	while (tmp /= 10)
-		len++;
-	len = len + sign;
-	if ((str = (char *)malloc(sizeof(char) * len)) == NULL)
-		return (NULL);
-	str[--len] = '\0';
-	while (len--)
-	{
-		str[len] = (value % 10) + '0';
-		value = value / 10;
-	}
-	if (sign)
-		str[0] = '-';
-	return (str);
-}
-
-
-char *ft_itoa_base_small(uintmax_t value, int base)
-{
-	uintmax_t 		tmp;
-	int 			len;
-	char 			*str;
-
-	len = 2;
-	tmp = value;
-	while (tmp /= base)
-		len++;
-	//printf("\n[%d]\n", len);
-	if ((str = (char *)malloc(sizeof(char) * len)) == NULL)
-		return (NULL);
-	str[--len] = '\0';
-	while (len--)
-	{
-		if (value % base > 9)
-			str[len] = (value % base) + 87;
-		else
-			str[len] = (value % base) + '0';
-		value = value / base;
-	}
-	return (str);
-}
-
-char *ft_itoa_base(uintmax_t value, int base)
-{
-	uintmax_t 		tmp;
-	int 			len;
-	char 			*str;
-
-
-	len = 2;
-	tmp = value;
-	while (tmp /= base)
-		len++;
-	if ((str = (char *)malloc(sizeof(char) * len)) == NULL)
-		return (NULL);
-	str[--len] = '\0';
-	while (len--)
-	{
-  		if (value % base > 9)
-			str[len] = (value % base) + 55;
-		else
-			str[len] = (value % base) + '0';
-		value = value / base;
-	}
-	return (str);
 }
