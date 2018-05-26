@@ -48,6 +48,7 @@ void			ft_dec_wp(char **res, t_flags *box)
 		(*res) = ft_strjoin(pre, *res);
 		//ft_strdel(&pre);
 	}
+	ft_strdel(&pre);
 	dec2(len, res, box);
 }
 
