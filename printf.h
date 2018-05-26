@@ -1,12 +1,6 @@
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <wchar.h>
-# include <stdarg.h>
-# include <stdio.h>
-
 # define MOD(c) (c == 'h' || c == 'l' || c == 'j' || c == 'z')
 
 # define SPR1(c) (c == 'd' || c == 'D'|| c == 'i' || c == 'c')
@@ -25,7 +19,12 @@
 
 # define SKIP(c) (FLAGS(c) || c == '.' || MOD(c) || ft_isdigit(c))
 
-//not a specifier or else
+
+# include <unistd.h>
+# include <stdlib.h>
+# include <wchar.h>
+# include <stdarg.h>
+# include <stdio.h>
 
 typedef	struct	s_find
 {
