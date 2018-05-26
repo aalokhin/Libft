@@ -1,21 +1,8 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   decimal.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: aalokhin <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/26 14:56:47 by aalokhin          #+#    #+#             */
-/*   Updated: 2018/05/26 14:56:49 by aalokhin         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "printf.h"
 
 void			dec2(int len, char **res, t_flags *box)
 {
 	char	*pre;
-	char	*tmp;
 
 	pre = NULL;
 	if (box->sign != 0)
@@ -23,10 +10,8 @@ void			dec2(int len, char **res, t_flags *box)
 		pre = ft_strnew(1);
 		ft_memset(pre, box->sign, 1);
 		pre[1] = '\0';
-		tmp = ft_strjoin(pre, *res);
-		ft_strdel(res);
-		(*res) = tmp;
-		ft_strdel(&pre);
+		(*res) = ft_strjoin(pre, *res);
+		//ft_strdel(&pre);
 	}
 	if ((int)box->wid > (len = ft_strlen(*res)))
 	{
@@ -34,21 +19,20 @@ void			dec2(int len, char **res, t_flags *box)
 		ft_memset(pre, ' ', box->wid - len);
 		pre[box->wid - len] = '\0';
 		if (box->minus)
-			tmp = ft_strjoin(*res, pre);
+			(*res) = ft_strjoin(*res, pre);
 		else
-			tmp = ft_strjoin(pre, *res);
-		ft_strdel(res);
-		ft_strdel(&pre);
-		(*res) = tmp;
+			(*res) = ft_strjoin(pre, *res);
+		
 	}
+	ft_strdel(&pre);
 }
 
 void			ft_dec_wp(char **res, t_flags *box)
 {
 	int		len;
 	char	*pre;
-	char	*tmp;
 
+	pre = NULL;
 	len = ft_strlen(*res);
 	if (box->zero != 0)
 	{
@@ -61,10 +45,8 @@ void			ft_dec_wp(char **res, t_flags *box)
 		pre = ft_strnew(box->pre - len);
 		ft_memset(pre, '0', box->pre - len);
 		pre[box->pre - len] = '\0';
-		tmp = ft_strjoin(pre, *res);
-		ft_strdel(res);
-		(*res) = tmp;
-		ft_strdel(&pre);
+		(*res) = ft_strjoin(pre, *res);
+		//ft_strdel(&pre);
 	}
 	dec2(len, res, box);
 }
