@@ -11,7 +11,7 @@ void			dec2(int len, char **res, t_flags *box)
 		ft_memset(pre, box->sign, 1);
 		pre[1] = '\0';
 		(*res) = ft_strjoin(pre, *res);
-		//ft_strdel(&pre);
+		////ft_strdel(&pre);
 	}
 	if ((int)box->wid > (len = ft_strlen(*res)))
 	{
@@ -22,7 +22,7 @@ void			dec2(int len, char **res, t_flags *box)
 			(*res) = ft_strjoin(*res, pre);
 		else
 			(*res) = ft_strjoin(pre, *res);
-		//ft_strdel(&pre);
+		////ft_strdel(&pre);
 	}
 }
 
@@ -44,7 +44,7 @@ void			ft_dec_wp(char **res, t_flags *box)
 		ft_memset(pre, '0', box->pre - len);
 		pre[box->pre - len] = '\0';
 		(*res) = ft_strjoin(pre, *res);
-		////ft_strdel(&pre);
+		//////ft_strdel(&pre);
 	}
 	dec2(len, res, box);
 }
@@ -83,6 +83,6 @@ void			decimal(va_list ap, t_flags *box, size_t *count)
 		res = ft_itoa_base((uintmax_t)ival2, 10);
 	ft_dec_wp(&res, box);
 	ft_putstr2(res, count);
-	ft_strdel(&res);
+	//ft_strdel(&res);
 	fill_struct(box);
 }

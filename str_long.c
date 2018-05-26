@@ -113,6 +113,6 @@ void			stroka_l(va_list ap, t_flags *box, size_t *count)
 	print_us_1(ival, count, len);
 	if (box->minus)
 		ft_putstr2(res, count);
-	ft_strdel(&res);
+	//ft_strdel(&res);
 	fill_struct(box);
 }
