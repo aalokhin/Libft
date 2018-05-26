@@ -51,6 +51,6 @@ void				hex_s(va_list ap, t_flags *box, size_t *count)
 		res = ft_itoa_base_small(ival, 16);
 	hexs1(&res, ival, box);
 	ft_putstr2(res, count);
-	//ft_strdel(&res);
+	ft_strdel(&res);
 	fill_struct(box);
 }
