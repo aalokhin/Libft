@@ -24,7 +24,7 @@ char			*ft_str_wp(char *ival, t_flags *box)
 		else
 			pre = ft_memset(pre, ' ', box->wid - len);
 		res = (box->minus) ? ft_strjoin(res, pre) : ft_strjoin(pre, res);
-		ft_strdel(&pre);
+		// ft_strdel(&pre);
 	}
 	return (res);
 }
