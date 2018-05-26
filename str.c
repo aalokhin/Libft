@@ -24,7 +24,7 @@ char			*ft_str_wp(char *ival, t_flags *box)
 		else
 			pre = ft_memset(pre, ' ', box->wid - len);
 		res = (box->minus) ? ft_strjoin(res, pre) : ft_strjoin(pre, res);
-		////ft_strdel(&pre);
+		ft_strdel(&pre);
 	}
 	return (res);
 }
@@ -43,6 +43,6 @@ void			stroka(va_list ap, t_flags *box, size_t *count)
 	else
 		res = ft_str_wp(ival, box);
 	ft_putstr2(res, count);
-	//ft_strdel(&res);
+	ft_strdel(&res);
 	fill_struct(box);
 }
