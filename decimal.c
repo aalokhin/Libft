@@ -88,5 +88,5 @@ void			decimal(va_list ap, t_flags *box, size_t *count)
 	ft_dec_wp(&res, box);
 	ft_putstr2(res, count);
 	fill_struct(box);
-	//ft_strdel(&res);
+	ft_strdel(&res);
 }
