@@ -19,7 +19,7 @@ void		ft_invalid(int ival, t_flags *box, size_t *count)
 	res[1] = '\0';
 	res = ft_str_wp(res, box);
 	ft_putstr2(res, count);
-	ft_strdel(&res);
+	//ft_strdel(&res);
 }
 
 void		charik(va_list ap, t_flags *box, size_t *count)
@@ -36,7 +36,8 @@ void		charik(va_list ap, t_flags *box, size_t *count)
 		box->wid--;
 	res = ft_str_wp(res, box);
 	ft_putstr2(res, count);
-	ft_strdel(&res);
+	
 	if (ival == 0)
 		ft_putchar2(ival, count);
+	ft_strdel(&res);
 }
