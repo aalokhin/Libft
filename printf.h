@@ -59,6 +59,7 @@ typedef struct	s_flags
 	char		specifier;
 }				t_flags;
 
+char			*ft_strjoin_m(char *s1, char *s2);
 void			hexs1(char **res, uintmax_t ival, t_flags *box);
 void			dec2(int len, char **res, t_flags *box);
 void			dec1(intmax_t *ival, t_flags *box);
@@ -66,7 +67,7 @@ void			fill_mods(char *str, int i, t_flags *box);
 int				collect(char *str, int i);
 void			ft_uns(va_list ap, t_flags *box, size_t *count);
 void			ft_invalid(int	ival, t_flags *box, size_t *count);
-char			*ft_chr_wp(char	*ival, t_flags *box);
+char			*ft_char_wp(wchar_t	ival, t_flags *box);
 void			print_char(wchar_t ival, size_t	*count);
 void			ft_mod_u(uintmax_t *n, t_flags *box);
 void			ft_uns(va_list ap, t_flags *box, size_t *count);

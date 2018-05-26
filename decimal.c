@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   decimal.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aalokhin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/05/26 14:56:47 by aalokhin          #+#    #+#             */
+/*   Updated: 2018/05/26 14:56:49 by aalokhin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "printf.h"
 
 void			dec2(int len, char **res, t_flags *box)
@@ -7,24 +19,24 @@ void			dec2(int len, char **res, t_flags *box)
 	pre = NULL;
 	if (box->sign != 0)
 	{
+	
 		pre = ft_strnew(1);
 		ft_memset(pre, box->sign, 1);
 		pre[1] = '\0';
-		(*res) = ft_strjoin(pre, *res);
-		//ft_strdel(&pre);
+		(*res) = ft_strjoin_m(pre, *res);
+
 	}
 	if ((int)box->wid > (len = ft_strlen(*res)))
 	{
+
 		pre = ft_strnew(box->wid - len);
 		ft_memset(pre, ' ', box->wid - len);
 		pre[box->wid - len] = '\0';
 		if (box->minus)
-			(*res) = ft_strjoin(*res, pre);
+			(*res) = ft_strjoin_m(*res, pre);
 		else
-			(*res) = ft_strjoin(pre, *res);
-		
+			(*res) = ft_strjoin_m(pre, *res);
 	}
-	ft_strdel(&pre);
 }
 
 void			ft_dec_wp(char **res, t_flags *box)
@@ -45,10 +57,10 @@ void			ft_dec_wp(char **res, t_flags *box)
 		pre = ft_strnew(box->pre - len);
 		ft_memset(pre, '0', box->pre - len);
 		pre[box->pre - len] = '\0';
-		(*res) = ft_strjoin(pre, *res);
+		(*res) = ft_strjoin_m(pre, *res);
+
 		//ft_strdel(&pre);
 	}
-	ft_strdel(&pre);
 	dec2(len, res, box);
 }
 
@@ -88,5 +100,5 @@ void			decimal(va_list ap, t_flags *box, size_t *count)
 	ft_dec_wp(&res, box);
 	ft_putstr2(res, count);
 	fill_struct(box);
-	ft_strdel(&res);
+	//ft_strdel(&res);
 }
