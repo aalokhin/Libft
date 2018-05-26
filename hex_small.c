@@ -12,14 +12,17 @@ void				ft_hash_xs(char **str)
 	(*str) = ft_strnew(ft_strlen(res) + 2);
 	(*str)[0] = '0';
 	(*str)[1] = 'x';
+	(*str)[2] = '\0';
 	while (res[j] != '\0')
 		(*str)[i++] = res[j++];
+	(*str)[i] = '\0';
 }
 
 void				hexs1(char **res, uintmax_t ival, t_flags *box)
 {
 	if (box->hash && (box->zero || box->pre > box->wid))
 	{
+		
 		box->wid -= 2;
 		ft_dec_wp(res, box);
 		ft_hash_xs(res);
@@ -27,6 +30,7 @@ void				hexs1(char **res, uintmax_t ival, t_flags *box)
 	else if ((box->hash && !box->zero &&\
 	!(box->pre == 0 && ival == 0 && box->wid == 0)))
 	{
+
 		ft_hash_xs(res);
 		ft_dec_wp(res, box);
 	}
@@ -45,10 +49,12 @@ void				hex_s(va_list ap, t_flags *box, size_t *count)
 	ival = va_arg(ap, uintmax_t);
 	ft_mod_u(&ival, box);
 	box->sign = 0;
+
 	if (box->dot == 1 && box->pre == 0 && ival == 0)
 		res = ft_strdup("");
 	else
 		res = ft_itoa_base_small(ival, 16);
+
 	hexs1(&res, ival, box);
 	ft_putstr2(res, count);
 	ft_strdel(&res);

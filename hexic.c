@@ -12,8 +12,10 @@ void				ft_hash_x(char **str)
 	(*str) = ft_strnew(ft_strlen(res) + 2);
 	(*str)[0] = '0';
 	(*str)[1] = 'X';
+	(*str)[2] = '\0';
 	while (res[j] != '\0')
 		(*str)[i++] = res[j++];
+	(*str)[i] = '\0';
 }
 
 void				hexb1(char **res, uintmax_t ival, t_flags *box)
