@@ -11,7 +11,7 @@ void			dec2(int len, char **res, t_flags *box)
 		ft_memset(pre, box->sign, 1);
 		pre[1] = '\0';
 		(*res) = ft_strjoin(pre, *res);
-		ft_strdel(&pre);
+		//ft_strdel(&pre);
 	}
 	if ((int)box->wid > (len = ft_strlen(*res)))
 	{
@@ -22,7 +22,7 @@ void			dec2(int len, char **res, t_flags *box)
 			(*res) = ft_strjoin(*res, pre);
 		else
 			(*res) = ft_strjoin(pre, *res);
-		ft_strdel(&pre);
+		//ft_strdel(&pre);
 	}
 }
 
@@ -44,7 +44,7 @@ void			ft_dec_wp(char **res, t_flags *box)
 		ft_memset(pre, '0', box->pre - len);
 		pre[box->pre - len] = '\0';
 		(*res) = ft_strjoin(pre, *res);
-		//ft_strdel(&pre);
+		////ft_strdel(&pre);
 	}
 	dec2(len, res, box);
 }
