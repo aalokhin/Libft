@@ -41,7 +41,7 @@ int			collect(char *s, int i)
 		i--;
 	}
 	len = ft_atoi(nbr);
-	ft_strdel(&nbr);
+	//ft_strdel(&nbr);
 	return (len);
 }
 
