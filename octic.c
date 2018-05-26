@@ -45,7 +45,7 @@ void				octal(va_list ap, t_flags *box, size_t *count)
 	if ((*box).hash && !box->zero &&\
 	!(box->pre == 0 && ival == 0 && !box->dot))
 		ft_hash_o(&res);
-	ft_dec_wp(&res, box);
+	res = ft_dec_wp(res, box);
 	ft_putstr2(res, count);
 	ft_strdel(&res);
 	fill_struct(box);

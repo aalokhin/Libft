@@ -59,9 +59,10 @@ typedef struct	s_flags
 	char		specifier;
 }				t_flags;
 
+char			*ft_dec_wp(char *res, t_flags *box);
 char			*ft_strjoin_m(char *s1, char *s2);
 void			hexs1(char **res, uintmax_t ival, t_flags *box);
-void			dec2(int len, char **res, t_flags *box);
+char			*dec2(int len, char *res, t_flags *box);
 void			dec1(intmax_t *ival, t_flags *box);
 void			fill_mods(char *str, int i, t_flags *box);
 int				collect(char *str, int i);
@@ -101,7 +102,7 @@ void			ft_m_putnbr(int n, size_t *count);
 char			*ft_strnew(size_t size);
 void			charik(va_list ap, t_flags *box, size_t *count);
 void			ft_pre(intmax_t n, size_t *count, t_flags *box);
-void			ft_dec_wp(char	**res, t_flags *box);
+// void			ft_dec_wp(char	**res, t_flags *box);
 void			ft_mod(intmax_t *n, t_flags *box);
 void			decimal(va_list ap, t_flags *box, size_t *count);
 void			ft_percent_sign(t_find	*f, va_list ap, t_flags *box);

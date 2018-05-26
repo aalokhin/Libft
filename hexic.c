@@ -35,17 +35,17 @@ void				hexb1(char **res, uintmax_t ival, t_flags *box)
 	if (box->hash && (box->zero || box->pre > box->wid))
 	{
 		box->wid -= 2;
-		ft_dec_wp(res, box);
+		(*res) = ft_dec_wp((*res), box);
 		ft_hash_x(res);
 	}
 	else if ((box->hash && !box->zero &&\
 	!(box->pre == 0 && ival == 0 && box->wid == 0)))
 	{
 		ft_hash_x(res);
-		ft_dec_wp(res, box);
+		(*res) = ft_dec_wp((*res), box);
 	}
 	else
-		ft_dec_wp(res, box);
+		(*res) = ft_dec_wp((*res), box);
 }
 
 void				hex_b(va_list ap, t_flags *box, size_t *count)
