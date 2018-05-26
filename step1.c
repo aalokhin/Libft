@@ -41,7 +41,7 @@ int			collect(char *s, int i)
 		i--;
 	}
 	len = ft_atoi(nbr);
-	//ft_strdel(&nbr);
+	//ft_strdel(&nbr); //ftprintf.com
 	return (len);
 }
 
@@ -196,27 +196,6 @@ void		ft_percent_sign(t_find *f, va_list ap, t_flags *box)
 		f->va++;
 	}
 	percent_sign2(f, ap, box);
-	// if ((f->s[f->va] == 's' && box->mod == 'l') || f->s[f->va] == 'S')
-	// 	stroka_l(ap, box, &(f->count));
-	// else if (f->s[f->va] == 's')
-	// 	stroka(ap, box, &(f->count));
-	// else if (f->s[f->va] == 'd')
-	// 	decimal(ap, box, &(f->count));
-	// else if (f->s[f->va] == 'D')
-	// {
-	// 	box->mod = 'l';
-	// 	decimal(ap, box, &(f->count));
-	// }
-	// else if (f->s[f->va] == 'o')
-	// 	octal(ap, box, &(f->count));
-	// else if (f->s[f->va] == 'O')
-	// {
-	// 	box->mod = 'l';
-	// 	octal(ap, box, &(f->count));
-	// }
-	// else if (f->s[f->va] == 'u')
-	// 	ft_uns(ap, box, &(f->count));
-	
 	if (f->s[f->va] != '\0')
 		f->va++;
 }
