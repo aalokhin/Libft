@@ -73,6 +73,7 @@ void			decimal(va_list ap, t_flags *box, size_t *count)
 	uintmax_t	ival2;
 	char		*res;
 
+	res = NULL;
 	if (box->dot)
 		box->zero = 0;
 	ival = va_arg(ap, intmax_t);
