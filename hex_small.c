@@ -28,6 +28,7 @@ void				ft_hash_xs(char **str)
 	while (res[j] != '\0')
 		(*str)[i++] = res[j++];
 	(*str)[i] = '\0';
+	ft_strdel(&res);
 }
 
 void				hexs1(char **res, uintmax_t ival, t_flags *box)

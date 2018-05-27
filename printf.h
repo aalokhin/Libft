@@ -59,14 +59,11 @@ typedef struct	s_flags
 	char		specifier;
 }				t_flags;
 
-// char* 	ft_dec_wp2(char *res, t_flags *box);
-// char*	dec22(char *res, t_flags *box);
-void	ft_strjoin_m(char **s1, char **s2, int c);
+// void	ft_strjoin_m(char **s1, char **s2, int c);
 char			*ft_dec_wp(char *res, t_flags *box);
+char			*ft_strjoin_m(char **s1, char **s2, int c);
+void			ft_memdel(void **ap);
 
-//char	*ft_strjoin_m(char **s1, char **s2, int c);
-char			*ft_dec_wp(char *res, t_flags *box);
-// char			*ft_strjoin_m(char *s1, char *s2);
 void			hexs1(char **res, uintmax_t ival, t_flags *box);
 char			*dec2(int len, char *res, t_flags *box);
 void			dec1(intmax_t *ival, t_flags *box);

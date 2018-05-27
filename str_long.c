@@ -125,6 +125,8 @@ void			stroka_l(va_list ap, t_flags *box, size_t *count)
 	print_us_1(ival, count, len);
 	if (box->minus)
 		ft_putstr2(res, count);
-	//ft_strdel(&res);
+	// if (box->pre == 0 && box->dot == 1)
+	// 	ft_memdel(&ival);
+	ft_strdel(&res);
 	fill_struct(box);
 }

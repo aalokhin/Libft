@@ -23,8 +23,11 @@ void				ft_hash_o(char **str)
 	res = ft_strdup(*str);
 	(*str) = ft_strnew(ft_strlen(res) + 1);
 	(*str)[0] = '0';
+	(*str)[1] = '\0';
 	while (res[j] != '\0')
 		(*str)[i++] = res[j++];
+	(*str)[i] = '\0';
+	ft_strdel(&res);
 }
 
 void				octal(va_list ap, t_flags *box, size_t *count)

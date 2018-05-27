@@ -12,6 +12,16 @@
 
 #include "printf.h"
 
+void	ft_memdel(void **ap)
+{
+	if (ap != NULL && *ap != NULL)
+	{
+		free(*ap);
+		*ap = NULL;
+	}
+}
+
+
 void	*ft_memalloc(size_t size)
 {
 	unsigned char	*res;
@@ -122,13 +132,13 @@ char	*ft_strcat(char *s1, const char *s2)
 	return (s1);
 }
 
-void ft_strjoin_m(char **s1, char **s2, int ch)
+char	*ft_strjoin_m(char **s1, char **s2, int ch)
 {
 	char	*c;
 
 	c = NULL;
 	if (!(*s1) || !(*s2) || !s1 || !s2)
-		return ;
+		return (NULL);
 	c = (char*)malloc(sizeof(char) * (ft_strlen(*s1) + ft_strlen(*s2) + 1));
 	if (c)
 	{
@@ -144,8 +154,9 @@ void ft_strjoin_m(char **s1, char **s2, int ch)
 		}
 		ft_strdel(s1);
 		ft_strdel(s2);
+		return (c);
 	}
-	*s1 = c;
+	return (NULL);
 }
 
 char	*ft_strjoin(char const *s1, char const *s2)
