@@ -59,8 +59,8 @@ typedef struct	s_flags
 	char		specifier;
 }				t_flags;
 
-char* 	ft_dec_wp2(char *res, t_flags *box);
-char*	dec22(char *res, t_flags *box);
+// char* 	ft_dec_wp2(char *res, t_flags *box);
+// char*	dec22(char *res, t_flags *box);
 void	ft_strjoin_m(char **s1, char **s2, int c);
 char			*ft_dec_wp(char *res, t_flags *box);
 
