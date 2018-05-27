@@ -27,7 +27,7 @@ void		fill_precision(char *str, t_flags *box, int *vasia)
 		box->dot = 1;
 	while (str[i] && !(!(SKIP(str[i])) || SPECIFIER(str[i])))
 		i++;
-	while (str[i - 1] && str[i - 1] != '.')
+	while (i > 0 && str[i - 1] && str[i - 1] != '.')
 		i--;
 	box->pre = collect(str, i);
 }
@@ -43,12 +43,11 @@ int			collect(char *s, int i)
 		len++;
 		i++;
 	}
-	while (s[i] && !(ft_isdigit(s[i])))
-		i--;
+	i -= len;
 	if (!(nbr = ft_strnew(len)))
 		return (0);
 	nbr[len] = '\0';
-	while (s[i] && ft_isdigit(s[i]))
+	while (i >= 0 && s[i] && ft_isdigit(s[i]))
 	{
 		nbr[--len] = s[i];
 		i--;
