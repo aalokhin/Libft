@@ -40,7 +40,7 @@
 typedef	struct	s_find
 {
 	char		*s;
-	int			va;
+	size_t			va;
 	size_t		count;
 }				t_find;
 
@@ -67,8 +67,9 @@ void			ft_memdel(void **ap);
 void			hexs1(char **res, uintmax_t ival, t_flags *box);
 char			*dec2(int len, char *res, t_flags *box);
 void			dec1(intmax_t *ival, t_flags *box);
-void			fill_mods(char *str, int i, t_flags *box);
-int				collect(char *str, int i);
+void			fill_mods(char *str, size_t i, t_flags *box);
+
+size_t			collect(char *str, size_t i);
 void			ft_uns(va_list ap, t_flags *box, size_t *count);
 void			ft_invalid(int	ival, t_flags *box, size_t *count);
 char			*ft_char_wp(wchar_t	ival, t_flags *box);
@@ -110,11 +111,11 @@ void			ft_mod(intmax_t *n, t_flags *box);
 void			decimal(va_list ap, t_flags *box, size_t *count);
 void			ft_percent_sign(t_find	*f, va_list ap, t_flags *box);
 void			ft_fill_width(t_find *f, t_flags *box);
-void			fill_precision(char *str, t_flags *box, int *vasia);
-void			ft_find_flags(char *str, t_flags *box, int *vasia);
-void			ft_find_mods(char *str, t_flags *box, int *vasia);
+void			fill_precision(char *str, t_flags *box, size_t *vasia);
+void			ft_find_flags(char *str, t_flags *box, size_t *vasia);
+void			ft_find_mods(char *str, t_flags *box, size_t *vasia);
 void			ft_found(t_find *f, va_list ap, t_flags *box);
-void			fill_flags(char *str, int i, t_flags *box);
+void			fill_flags(char *str, size_t i, t_flags *box);
 int				ft_printf(const char *format, ...);
 char			*ft_itoa_m(intmax_t value);
 size_t			ft_strlen(const char *s);
