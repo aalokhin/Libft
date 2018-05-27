@@ -12,54 +12,100 @@
 
 #include "printf.h"
 
-char			*dec2(int len, char *res, t_flags *box)
+// char			*dec2(int len, char *res, t_flags *box)
+// {
+// 	char	*pre;
+
+// 	if (box->sign != 0)
+// 	{
+// 		pre = ft_strnew(1);
+// 		ft_memset(pre, box->sign, 1);
+// 		pre[1] = '\0';
+// 		res = ft_strjoin_m(&pre, &res, 2);
+// 	}
+// 	if ((int)box->wid > (len = ft_strlen(res)))
+// 	{
+// 		pre = ft_strnew(box->wid - len);
+// 		ft_memset(pre, ' ', box->wid - len);
+// 		pre[box->wid - len] = '\0';
+// 		if (box->minus)
+// 			res = ft_strjoin_m(&res, &pre, 1);
+// 		else
+// 			res = ft_strjoin_m(&res, &pre, 2);
+// 	}
+// 	return (res);
+// }
+
+// char			*ft_dec_wp(char *res, t_flags *box)
+// {
+// 	int		len;
+// 	char	*pre;
+// 	char	*ret;
+
+// 	len = ft_strlen(res);
+// 	if (box->zero != 0)
+// 	{
+// 		if (box->sign != 0)
+// 			(box->wid)--;
+// 		box->pre = box->wid;
+// 	}
+// 	if ((int)(box->pre) > len)
+// 	{
+// 		pre = ft_strnew((box->pre) - len);
+// 		ft_memset(pre, '0', (box->pre) - len);
+// 		pre[(box->pre) - len] = '\0';
+// 		res = ft_strjoin_m(&res, &pre, 2);
+// 	}
+// 	ret = dec2(len, res, box);
+// 	return (ret);
+// }
+
+char*	dec2(int len, char *res, t_flags *box)
 {
 	char	*pre;
 
-	pre = NULL;
 	if (box->sign != 0)
 	{
 		pre = ft_strnew(1);
 		ft_memset(pre, box->sign, 1);
 		pre[1] = '\0';
-		res = ft_strjoin_m(pre, res);
-
+		res = ft_strjoin_m(&res, &pre, 2);
 	}
-	if ((int)box->wid > (len = ft_strlen(res)))
+	if (res && (int)box->wid > (len = ft_strlen(res)))
 	{
-
 		pre = ft_strnew(box->wid - len);
 		ft_memset(pre, ' ', box->wid - len);
 		pre[box->wid - len] = '\0';
 		if (box->minus)
-			res = ft_strjoin_m(res, pre);
+			res = ft_strjoin_m(&res, &pre, 1);
 		else
-			res = ft_strjoin_m(pre, res);
+			res = ft_strjoin_m(&res, &pre, 2);
 	}
-	return (res);
+	return(res);
 }
 
-char			*ft_dec_wp(char *res, t_flags *box)
+char* 	ft_dec_wp(char *res, t_flags *box)
 {
 	int		len;
 	char	*pre;
+	char	*tmp;
 
-	pre = NULL;
 	len = ft_strlen(res);
 	if (box->zero != 0)
 	{
 		if (box->sign != 0)
-			box->wid--;
+			(box->wid)--;
 		box->pre = box->wid;
 	}
-	if ((int)box->pre > len)
+	if ((int)(box->pre) > len)
 	{
-		pre = ft_strnew(box->pre - len);
-		ft_memset(pre, '0', box->pre - len);
-		pre[box->pre - len] = '\0';
-		res = ft_strjoin_m(pre, res);
+		pre = ft_strnew((box->pre) - len);
+		ft_memset(pre, '0', (box->pre) - len);
+		pre[(box->pre) - len] = '\0';
+		res = ft_strjoin_m(&res, &pre, 2);
 	}
-	return (dec2(len, res, box));
+	tmp = dec2(len, res, box);
+	return (tmp);
 }
 
 void			dec1(intmax_t *ival, t_flags *box)
