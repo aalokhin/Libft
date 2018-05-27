@@ -53,7 +53,7 @@ int			collect(char *s, int i)
 		i--;
 	}
 	len = ft_atoi(nbr);
-	ft_strdel(&nbr); //ftprintf.com
+	//ft_strdel(&nbr); //ftprintf.com
 	return (len);
 }
 
