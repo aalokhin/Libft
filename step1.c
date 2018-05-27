@@ -47,7 +47,7 @@ int			collect(char *s, int i)
 		i--;
 	if (!(nbr = ft_strnew(len)))
 		return (0);
-	nbr[len + 1] = '\0';
+	nbr[len] = '\0';
 	while (s[i] && ft_isdigit(s[i]))
 	{
 		nbr[--len] = s[i];
