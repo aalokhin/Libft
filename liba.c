@@ -139,7 +139,8 @@ char	*ft_strjoin_m(char **s1, char **s2, int ch)
 	c = NULL;
 	if (!(*s1) || !(*s2) || !s1 || !s2)
 		return (NULL);
-	c = (char*)malloc(sizeof(char) * (ft_strlen(*s1) + ft_strlen(*s2) + 1));
+	if (!(c = (char*)malloc(sizeof(char) * (ft_strlen(*s1) + ft_strlen(*s2) + 1))))
+		return (NULL);
 	if (c)
 	{
 		if (ch == 1)
@@ -261,7 +262,7 @@ char	*ft_strnew(size_t size)
 		str[i] = '\0';
 		i++;
 	}
-	i = '\0';
+	str[i] = '\0';
 	return (str);
 }
 
