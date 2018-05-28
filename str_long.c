@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   str_long.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aalokhin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/05/26 15:03:39 by aalokhin          #+#    #+#             */
+/*   Updated: 2018/05/26 15:03:41 by aalokhin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "printf.h"
 
 size_t			count_check(wchar_t *s, size_t size)
@@ -113,6 +125,8 @@ void			stroka_l(va_list ap, t_flags *box, size_t *count)
 	print_us_1(ival, count, len);
 	if (box->minus)
 		ft_putstr2(res, count);
-	//ft_strdel(&res);
+	// if (box->pre == 0 && box->dot == 1)
+	// 	ft_memdel(&ival);
+	ft_strdel(&res);
 	fill_struct(box);
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   printf.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aalokhin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/05/26 14:59:07 by aalokhin          #+#    #+#             */
+/*   Updated: 2018/05/26 14:59:10 by aalokhin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "printf.h"
 
 int					ft_printf(const char *format, ...)
@@ -8,7 +20,7 @@ int					ft_printf(const char *format, ...)
 
 	va_start(ap, format);
 	fill_struct(&box);
-	p.s = (char*)format;
+	p.s = ft_strdup((char*)format);
 	p.va = 0;
 	p.count = 0;
 	while (p.s[p.va])
@@ -23,5 +35,6 @@ int					ft_printf(const char *format, ...)
 			ft_m_putchar(&p);
 	}
 	va_end(ap);
+	ft_strdel(&(p.s));
 	return (p.count);
 }

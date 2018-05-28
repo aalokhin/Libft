@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   help_func.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aalokhin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/05/26 14:57:43 by aalokhin          #+#    #+#             */
+/*   Updated: 2018/05/26 14:58:35 by aalokhin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "printf.h"
 
-void		ft_find_flags(char *str, t_flags *box, int *vasia)
+void		ft_find_flags(char *str, t_flags *box, size_t *vasia)
 {
 	int		i;
 

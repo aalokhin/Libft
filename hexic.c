@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   hexic.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aalokhin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/05/26 14:58:04 by aalokhin          #+#    #+#             */
+/*   Updated: 2018/05/26 14:58:06 by aalokhin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "printf.h"
 
 void				ft_hash_x(char **str)
@@ -12,8 +24,11 @@ void				ft_hash_x(char **str)
 	(*str) = ft_strnew(ft_strlen(res) + 2);
 	(*str)[0] = '0';
 	(*str)[1] = 'X';
+	(*str)[2] = '\0';
 	while (res[j] != '\0')
 		(*str)[i++] = res[j++];
+	(*str)[i] = '\0';
+	ft_strdel(&res);
 }
 
 void				hexb1(char **res, uintmax_t ival, t_flags *box)
@@ -21,17 +36,17 @@ void				hexb1(char **res, uintmax_t ival, t_flags *box)
 	if (box->hash && (box->zero || box->pre > box->wid))
 	{
 		box->wid -= 2;
-		ft_dec_wp(res, box);
+		(*res) = ft_dec_wp((*res), box);
 		ft_hash_x(res);
 	}
 	else if ((box->hash && !box->zero &&\
 	!(box->pre == 0 && ival == 0 && box->wid == 0)))
 	{
 		ft_hash_x(res);
-		ft_dec_wp(res, box);
+		(*res) = ft_dec_wp((*res), box);
 	}
 	else
-		ft_dec_wp(res, box);
+		(*res) = ft_dec_wp((*res), box);
 }
 
 void				hex_b(va_list ap, t_flags *box, size_t *count)
@@ -51,6 +66,6 @@ void				hex_b(va_list ap, t_flags *box, size_t *count)
 		res = ft_itoa_base(ival, 16);
 	hexb1(&res, ival, box);
 	ft_putstr2(res, count);
-	//ft_strdel(&res);
+	ft_strdel(&res);
 	fill_struct(box);
 }
