@@ -56,7 +56,8 @@ size_t			collect(char *s, size_t i)
 		nbr[--len] = s[i];
 		i--;
 	}
-	ret = ft_atoi_m(nbr);
+	if (nbr != NULL)
+		ret = ft_atoi_m(nbr);
 	ft_strdel(&nbr); //ftprintf.com
 	return (ret);
 }
