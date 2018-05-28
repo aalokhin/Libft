@@ -44,10 +44,10 @@ size_t			collect(char *s, size_t i)
 		len++;
 		i++;
 	}
+	if (len == 0 || !(nbr = ft_strnew(len)))
+		return(0);
 	while (s[i] && !(ft_isdigit(s[i])))
 		i--;
-	if (!(nbr = ft_strnew(len)))
-		return (0);
 	nbr[len] = '\0';
 	while (s[i] && ft_isdigit(s[i]))
 	{
