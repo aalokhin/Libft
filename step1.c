@@ -48,6 +48,7 @@ size_t			collect(char *s, size_t i)
 		i--;
 	if (!(nbr = ft_strnew(len)))
 		return (0);
+	nbr = NULL;
 	nbr[len] = '\0';
 	while (s[i] && ft_isdigit(s[i]))
 	{
