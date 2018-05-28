@@ -20,7 +20,7 @@ int					ft_printf(const char *format, ...)
 
 	va_start(ap, format);
 	fill_struct(&box);
-	p.s = (char*)format;
+	p.s = ft_strdup((char*)format);
 	p.va = 0;
 	p.count = 0;
 	while (p.s[p.va])
@@ -35,6 +35,6 @@ int					ft_printf(const char *format, ...)
 			ft_m_putchar(&p);
 	}
 	va_end(ap);
-	//ft_strdel(&(p.s));
+	ft_strdel(&(p.s));
 	return (p.count);
 }

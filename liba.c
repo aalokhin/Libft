@@ -58,6 +58,57 @@ intmax_t		ft_atoi_m(char *str)
 	return (res);
 }
 
+
+int		ft_atoi(char *str)
+{
+	int sign;
+	int res;
+
+	res = 0;
+	sign = 1;
+	while (*str == ' ' || *str == '\n' || *str == '\v' || *str == '\t' \
+		|| *str == '\r' || *str == '\f')
+		str++;
+	if (*str == '-')
+	{
+		sign = -1;
+		str++;
+	}
+	else if (*str == '+')
+		str++;
+	while (*str >= '0' && *str <= '9')
+	{
+		res = 10 * res + sign * (*str - '0');
+		str++;
+	}
+	return (res);
+}
+
+intmax_t		ft_atoi_m(char *str)
+{
+	int sign;
+	intmax_t res;
+
+	res = 0;
+	sign = 1;
+	while (*str == ' ' || *str == '\n' || *str == '\v' || *str == '\t' \
+		|| *str == '\r' || *str == '\f')
+		str++;
+	if (*str == '-')
+	{
+		sign = -1;
+		str++;
+	}
+	else if (*str == '+')
+		str++;
+	while (*str >= '0' && *str <= '9')
+	{
+		res = 10 * res + sign * (*str - '0');
+		str++;
+	}
+	return (res);
+}
+
 void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
 	size_t			i;
