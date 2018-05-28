@@ -28,7 +28,6 @@ void				ft_hash_xs(char **str)
 	while (res[j] != '\0')
 		(*str)[i++] = res[j++];
 	(*str)[i] = '\0';
-	ft_strdel(&res);
 }
 
 void				hexs1(char **res, uintmax_t ival, t_flags *box)
@@ -36,17 +35,17 @@ void				hexs1(char **res, uintmax_t ival, t_flags *box)
 	if (box->hash && (box->zero || box->pre > box->wid))
 	{
 		box->wid -= 2;
-		(*res) = ft_dec_wp((*res), box);
+		ft_dec_wp(res, box);
 		ft_hash_xs(res);
 	}
 	else if ((box->hash && !box->zero &&\
 	!(box->pre == 0 && ival == 0 && box->wid == 0)))
 	{
 		ft_hash_xs(res);
-		(*res) = ft_dec_wp((*res), box);
+		ft_dec_wp(res, box);
 	}
 	else
-		(*res) = ft_dec_wp((*res), box);
+		ft_dec_wp(res, box);
 }
 
 void				hex_s(va_list ap, t_flags *box, size_t *count)

@@ -12,52 +12,56 @@
 
 #include "printf.h"
 
-char*	dec2(int len, char *res, t_flags *box)
+void			dec2(int len, char **res, t_flags *box)
 {
 	char	*pre;
 
+	pre = NULL;
 	if (box->sign != 0)
 	{
+	
 		pre = ft_strnew(1);
 		ft_memset(pre, box->sign, 1);
 		pre[1] = '\0';
-		res = ft_strjoin_m(&res, &pre, 2);
+		(*res) = ft_strjoin_m(pre, *res);
+
 	}
-	if (res && (int)box->wid > (len = ft_strlen(res)))
+	if ((int)box->wid > (len = ft_strlen(*res)))
 	{
+
 		pre = ft_strnew(box->wid - len);
 		ft_memset(pre, ' ', box->wid - len);
 		pre[box->wid - len] = '\0';
 		if (box->minus)
-			res = ft_strjoin_m(&res, &pre, 1);
+			(*res) = ft_strjoin_m(*res, pre);
 		else
-			res = ft_strjoin_m(&res, &pre, 2);
+			(*res) = ft_strjoin_m(pre, *res);
 	}
-	return(res);
 }
 
-char* 	ft_dec_wp(char *res, t_flags *box)
+void			ft_dec_wp(char **res, t_flags *box)
 {
 	int		len;
 	char	*pre;
-	char	*tmp;
 
-	len = ft_strlen(res);
+	pre = NULL;
+	len = ft_strlen(*res);
 	if (box->zero != 0)
 	{
 		if (box->sign != 0)
-			(box->wid)--;
+			box->wid--;
 		box->pre = box->wid;
 	}
-	if ((int)(box->pre) > len)
+	if ((int)box->pre > len)
 	{
-		pre = ft_strnew((box->pre) - len);
-		ft_memset(pre, '0', (box->pre) - len);
-		pre[(box->pre) - len] = '\0';
-		res = ft_strjoin_m(&res, &pre, 2);
+		pre = ft_strnew(box->pre - len);
+		ft_memset(pre, '0', box->pre - len);
+		pre[box->pre - len] = '\0';
+		(*res) = ft_strjoin_m(pre, *res);
+
+		//ft_strdel(&pre);
 	}
-	tmp = dec2(len, res, box);
-	return (tmp);
+	dec2(len, res, box);
 }
 
 void			dec1(intmax_t *ival, t_flags *box)
@@ -93,7 +97,7 @@ void			decimal(va_list ap, t_flags *box, size_t *count)
 		res = ft_strdup("");
 	else
 		res = ft_itoa_base((uintmax_t)ival2, 10);
-	res = ft_dec_wp(res, box);
+	ft_dec_wp(&res, box);
 	ft_putstr2(res, count);
 	fill_struct(box);
 	//ft_strdel(&res);
