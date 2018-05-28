@@ -48,7 +48,7 @@ size_t			collect(char *s, size_t i)
 	}
 	while (s[i] && !(ft_isdigit(s[i])))
 		i--;
-	if (!(nbr = ft_strnew(len)))
+	if (len == 0 || !(nbr = ft_strnew(len)))
 		return (0);
 	nbr[len] = '\0';
 	while (s[i] && ft_isdigit(s[i]))
@@ -58,7 +58,7 @@ size_t			collect(char *s, size_t i)
 	}
 	ret = ft_atoi_m(nbr);
 //	if (*nbr && nbr)
-//		ft_strdel(&nbr); //ftprintf.com
+	ft_strdel(&nbr); //ftprintf.com
 	return (ret);
 }
 
