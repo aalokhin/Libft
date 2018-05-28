@@ -36,28 +36,30 @@ size_t			collect(char *s, size_t i)
 {
 	size_t		len;
 	char		*nbr;
+	intmax_t	ret;
 
 	len = 0;
 	nbr = NULL;
+	ret = 0;
 	while (s[i] && ft_isdigit(s[i]))
 	{
 		len++;
 		i++;
 	}
-	if (len == 0 || !(nbr = ft_strnew(len)))
-		return(0);
 	while (s[i] && !(ft_isdigit(s[i])))
 		i--;
+	if (!(nbr = ft_strnew(len)))
+		return (0);
 	nbr[len] = '\0';
 	while (s[i] && ft_isdigit(s[i]))
 	{
 		nbr[--len] = s[i];
 		i--;
 	}
-	len = ft_atoi(nbr);
-	if (*nbr && nbr)
-		ft_strdel(&nbr); //ftprintf.com
-	return (len);
+	ret = ft_atoi_m(nbr);
+//	if (*nbr && nbr)
+//		ft_strdel(&nbr); //ftprintf.com
+	return (ret);
 }
 
 void		ft_fill_width(t_find *f, t_flags *box)

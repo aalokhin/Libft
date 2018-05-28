@@ -133,6 +133,6 @@ char			*ft_itoa_base(uintmax_t value, int base);
 void			*ft_memalloc(size_t size);
 void			*ft_bzero(void *s, size_t n);
 void			*ft_memcpy(void *dst, const void *src, size_t n);
-int				ft_atoi(const char *str);
+intmax_t		ft_atoi_m(char *str);
 
 #endif

@@ -33,10 +33,10 @@ void	*ft_memalloc(size_t size)
 	return ((void *)res);
 }
 
-int		ft_atoi(const char *str)
+intmax_t		ft_atoi_m(char *str)
 {
 	int sign;
-	int res;
+	intmax_t res;
 
 	res = 0;
 	sign = 1;
