@@ -12,9 +12,9 @@
 
 #include "printf.h"
 
-void		fill_precision(char *str, t_flags *box, int *vasia)
+void		fill_precision(char *str, t_flags *box, size_t *vasia)
 {
-	int		i;
+	size_t		i;
 
 	i = (*vasia);
 	while (str[i] && str[i] != '.')
@@ -32,12 +32,15 @@ void		fill_precision(char *str, t_flags *box, int *vasia)
 	box->pre = collect(str, i);
 }
 
-int			collect(char *s, int i)
+size_t			collect(char *s, size_t i)
 {
 	size_t		len;
 	char		*nbr;
+	intmax_t	ret;
 
 	len = 0;
+	nbr = NULL;
+	ret = 0;
 	while (s[i] && ft_isdigit(s[i]))
 	{
 		len++;
@@ -45,21 +48,22 @@ int			collect(char *s, int i)
 	}
 	while (s[i] && !(ft_isdigit(s[i])))
 		i--;
-	nbr = ft_strnew(len);
-	nbr[len + 1] = '\0';
+	if (!(nbr = ft_strnew(len)))
+		return (0);
+	nbr[len] = '\0';
 	while (s[i] && ft_isdigit(s[i]))
 	{
 		nbr[--len] = s[i];
 		i--;
 	}
-	len = ft_atoi(nbr);
+	ret = ft_atoi_m(nbr);
 	//ft_strdel(&nbr); //ftprintf.com
-	return (len);
+	return (ret);
 }
 
 void		ft_fill_width(t_find *f, t_flags *box)
 {
-	int		i;
+	size_t		i;
 
 	i = f->va;
 	while (f->s[i] && SKIP(f->s[i]))
@@ -75,7 +79,7 @@ void		ft_fill_width(t_find *f, t_flags *box)
 	}
 }
 
-void		fill_mods(char *str, int i, t_flags *box)
+void		fill_mods(char *str, size_t i, t_flags *box)
 {
 	while (str[i] && MOD(str[i]))
 	{
@@ -102,7 +106,7 @@ void		fill_mods(char *str, int i, t_flags *box)
 	}
 }
 
-void		fill_flags(char *str, int i, t_flags *box)
+void		fill_flags(char *str, size_t i, t_flags *box)
 {
 	if (str[i] == '#')
 		(*box).hash = 1;
@@ -122,9 +126,9 @@ void		fill_flags(char *str, int i, t_flags *box)
 	}
 }
 
-void		ft_find_mods(char *str, t_flags *box, int *vasia)
+void		ft_find_mods(char *str, t_flags *box, size_t *vasia)
 {
-	int		i;
+	size_t		i;
 
 	i = (*vasia);
 	while (str[i] && SKIP(str[i]))

@@ -35,5 +35,6 @@ int					ft_printf(const char *format, ...)
 			ft_m_putchar(&p);
 	}
 	va_end(ap);
+	//ft_strdel(&(p.s));
 	return (p.count);
 }

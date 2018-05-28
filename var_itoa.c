@@ -83,7 +83,7 @@ char		*ft_itoa_base(uintmax_t value, int base)
 	tmp = value;
 	while (tmp /= base)
 		len++;
-	if ((str = (char *)malloc(sizeof(char) * len)) == NULL)
+	if (!(str = (char *)malloc(sizeof(char) * len)))
 		return (NULL);
 	str[--len] = '\0';
 	while (len--)

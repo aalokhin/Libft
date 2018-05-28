@@ -12,7 +12,7 @@
 
 #include "printf.h"
 
-void		ft_find_flags(char *str, t_flags *box, int *vasia)
+void		ft_find_flags(char *str, t_flags *box, size_t *vasia)
 {
 	int		i;
 

@@ -66,7 +66,7 @@ void			ft_uns(va_list ap, t_flags *box, size_t *count)
 		res = ft_strdup("");
 	else
 		res = ft_itoa_base(ival, 10);
-	ft_dec_wp(&res, box);
+	res = ft_dec_wp(res, box);
 	ft_putstr2(res, count);
 	ft_strdel(&res);
 	fill_struct(box);

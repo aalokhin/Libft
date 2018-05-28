@@ -36,8 +36,8 @@ char			*ft_str_wp(char *ival, t_flags *box)
 		else
 			pre = ft_memset(pre, ' ', box->wid - len);
 		pre[box->wid - len] = '\0';
-		res = (box->minus) ? ft_strjoin(res, pre) : ft_strjoin(pre, res);
-		ft_strdel(&pre);
+		res = (box->minus) ? ft_strjoin_m(&res, &pre, 1) : ft_strjoin_m(&res, &pre, 2);
+		// ft_strdel(&pre);
 	}
 	return (res);
 }

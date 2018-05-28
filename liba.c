@@ -12,6 +12,16 @@
 
 #include "printf.h"
 
+void	ft_memdel(void **ap)
+{
+	if (ap != NULL && *ap != NULL)
+	{
+		free(*ap);
+		*ap = NULL;
+	}
+}
+
+
 void	*ft_memalloc(size_t size)
 {
 	unsigned char	*res;
@@ -23,10 +33,10 @@ void	*ft_memalloc(size_t size)
 	return ((void *)res);
 }
 
-int		ft_atoi(const char *str)
+intmax_t		ft_atoi_m(char *str)
 {
 	int sign;
-	int res;
+	intmax_t res;
 
 	res = 0;
 	sign = 1;
@@ -122,19 +132,28 @@ char	*ft_strcat(char *s1, const char *s2)
 	return (s1);
 }
 
-char	*ft_strjoin_m(char *s1, char *s2)
+char	*ft_strjoin_m(char **s1, char **s2, int ch)
 {
 	char	*c;
 
-	if (!s1 || !s2)
+	c = NULL;
+	if (!(*s1) || !(*s2) || !s1 || !s2)
 		return (NULL);
-	c = (char *)malloc(sizeof(char*) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	c = (char*)malloc(sizeof(char) * (ft_strlen(*s1) + ft_strlen(*s2) + 1));
 	if (c)
 	{
-		ft_strcpy(c, s1);
-		ft_strcat(c, s2);
-		ft_strdel(&s1);
-		ft_strdel(&s2);
+		if (ch == 1)
+		{
+			ft_strcpy(c, *s1);
+			ft_strcat(c, *s2);
+		}
+		else if (ch == 2)
+		{
+			ft_strcpy(c, *s2);
+			ft_strcat(c, *s1);
+		}
+		ft_strdel(s1);
+		ft_strdel(s2);
 		return (c);
 	}
 	return (NULL);
@@ -146,7 +165,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	if (!s1 || !s2)
 		return (NULL);
-	c = (char *)malloc(sizeof(char*) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	c = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 	if (c)
 	{
 		ft_strcpy(c, s1);
@@ -242,7 +261,7 @@ char	*ft_strnew(size_t size)
 		str[i] = '\0';
 		i++;
 	}
-	i = '\0';
+	str[i] = '\0';
 	return (str);
 }
 

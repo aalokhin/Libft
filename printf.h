@@ -40,7 +40,7 @@
 typedef	struct	s_find
 {
 	char		*s;
-	int			va;
+	size_t			va;
 	size_t		count;
 }				t_find;
 
@@ -59,12 +59,17 @@ typedef struct	s_flags
 	char		specifier;
 }				t_flags;
 
-char			*ft_strjoin_m(char *s1, char *s2);
+// void	ft_strjoin_m(char **s1, char **s2, int c);
+char			*ft_dec_wp(char *res, t_flags *box);
+char			*ft_strjoin_m(char **s1, char **s2, int c);
+void			ft_memdel(void **ap);
+
 void			hexs1(char **res, uintmax_t ival, t_flags *box);
-void			dec2(int len, char **res, t_flags *box);
+char			*dec2(int len, char *res, t_flags *box);
 void			dec1(intmax_t *ival, t_flags *box);
-void			fill_mods(char *str, int i, t_flags *box);
-int				collect(char *str, int i);
+void			fill_mods(char *str, size_t i, t_flags *box);
+
+size_t			collect(char *str, size_t i);
 void			ft_uns(va_list ap, t_flags *box, size_t *count);
 void			ft_invalid(int	ival, t_flags *box, size_t *count);
 char			*ft_char_wp(wchar_t	ival, t_flags *box);
@@ -101,16 +106,16 @@ void			ft_m_putnbr(int n, size_t *count);
 char			*ft_strnew(size_t size);
 void			charik(va_list ap, t_flags *box, size_t *count);
 void			ft_pre(intmax_t n, size_t *count, t_flags *box);
-void			ft_dec_wp(char	**res, t_flags *box);
+// void			ft_dec_wp(char	**res, t_flags *box);
 void			ft_mod(intmax_t *n, t_flags *box);
 void			decimal(va_list ap, t_flags *box, size_t *count);
 void			ft_percent_sign(t_find	*f, va_list ap, t_flags *box);
 void			ft_fill_width(t_find *f, t_flags *box);
-void			fill_precision(char *str, t_flags *box, int *vasia);
-void			ft_find_flags(char *str, t_flags *box, int *vasia);
-void			ft_find_mods(char *str, t_flags *box, int *vasia);
+void			fill_precision(char *str, t_flags *box, size_t *vasia);
+void			ft_find_flags(char *str, t_flags *box, size_t *vasia);
+void			ft_find_mods(char *str, t_flags *box, size_t *vasia);
 void			ft_found(t_find *f, va_list ap, t_flags *box);
-void			fill_flags(char *str, int i, t_flags *box);
+void			fill_flags(char *str, size_t i, t_flags *box);
 int				ft_printf(const char *format, ...);
 char			*ft_itoa_m(intmax_t value);
 size_t			ft_strlen(const char *s);
@@ -128,6 +133,6 @@ char			*ft_itoa_base(uintmax_t value, int base);
 void			*ft_memalloc(size_t size);
 void			*ft_bzero(void *s, size_t n);
 void			*ft_memcpy(void *dst, const void *src, size_t n);
-int				ft_atoi(const char *str);
+intmax_t		ft_atoi_m(char *str);
 
 #endif
