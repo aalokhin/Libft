@@ -36,7 +36,7 @@ size_t			collect(char *s, size_t i)
 {
 	size_t		len;
 	char		*nbr;
-	int	ret;
+	intmax_t	ret;
 
 	len = 0;
 	nbr = NULL;
@@ -56,7 +56,7 @@ size_t			collect(char *s, size_t i)
 		nbr[--len] = s[i];
 		i--;
 	}
-	ret = ft_atoi(nbr);
+	ret = ft_atoi_m(nbr);
 	//ft_strdel(&nbr); //ftprintf.com
 	return (ret);
 }

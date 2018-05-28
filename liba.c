@@ -58,57 +58,6 @@ intmax_t		ft_atoi_m(char *str)
 	return (res);
 }
 
-
-int		ft_atoi(char *str)
-{
-	int sign;
-	int res;
-
-	res = 0;
-	sign = 1;
-	while (*str == ' ' || *str == '\n' || *str == '\v' || *str == '\t' \
-		|| *str == '\r' || *str == '\f')
-		str++;
-	if (*str == '-')
-	{
-		sign = -1;
-		str++;
-	}
-	else if (*str == '+')
-		str++;
-	while (*str >= '0' && *str <= '9')
-	{
-		res = 10 * res + sign * (*str - '0');
-		str++;
-	}
-	return (res);
-}
-
-intmax_t		ft_atoi_m(char *str)
-{
-	int sign;
-	intmax_t res;
-
-	res = 0;
-	sign = 1;
-	while (*str == ' ' || *str == '\n' || *str == '\v' || *str == '\t' \
-		|| *str == '\r' || *str == '\f')
-		str++;
-	if (*str == '-')
-	{
-		sign = -1;
-		str++;
-	}
-	else if (*str == '+')
-		str++;
-	while (*str >= '0' && *str <= '9')
-	{
-		res = 10 * res + sign * (*str - '0');
-		str++;
-	}
-	return (res);
-}
-
 void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
 	size_t			i;
@@ -191,6 +140,7 @@ char	*ft_strjoin_m(char **s1, char **s2, int ch)
 	if (!(*s1) || !(*s2) || !s1 || !s2)
 		return (NULL);
 	c = (char*)malloc(sizeof(char) * (ft_strlen(*s1) + ft_strlen(*s2) + 1));
+		
 	if (c)
 	{
 		if (ch == 1)
