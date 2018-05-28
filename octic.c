@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   octic.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: aalokhin <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/26 14:57:20 by aalokhin          #+#    #+#             */
-/*   Updated: 2018/05/26 14:57:21 by aalokhin         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "printf.h"
 
 void				ft_hash_o(char **str)
@@ -23,11 +11,8 @@ void				ft_hash_o(char **str)
 	res = ft_strdup(*str);
 	(*str) = ft_strnew(ft_strlen(res) + 1);
 	(*str)[0] = '0';
-	(*str)[1] = '\0';
 	while (res[j] != '\0')
 		(*str)[i++] = res[j++];
-	(*str)[i] = '\0';
-	ft_strdel(&res);
 }
 
 void				octal(va_list ap, t_flags *box, size_t *count)
@@ -48,8 +33,8 @@ void				octal(va_list ap, t_flags *box, size_t *count)
 	if ((*box).hash && !box->zero &&\
 	!(box->pre == 0 && ival == 0 && !box->dot))
 		ft_hash_o(&res);
-	res = ft_dec_wp(res, box);
+	ft_dec_wp(&res, box);
 	ft_putstr2(res, count);
-	ft_strdel(&res);
+	//ft_strdel(&res);
 	fill_struct(box);
 }

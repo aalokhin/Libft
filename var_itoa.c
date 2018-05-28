@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   var_itoa.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: aalokhin <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/26 14:57:32 by aalokhin          #+#    #+#             */
-/*   Updated: 2018/05/26 14:57:34 by aalokhin         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "printf.h"
 
 void		neg(intmax_t *tmp, int *sign)
@@ -83,7 +71,7 @@ char		*ft_itoa_base(uintmax_t value, int base)
 	tmp = value;
 	while (tmp /= base)
 		len++;
-	if (!(str = (char *)malloc(sizeof(char) * len)))
+	if ((str = (char *)malloc(sizeof(char) * len)) == NULL)
 		return (NULL);
 	str[--len] = '\0';
 	while (len--)

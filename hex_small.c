@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   hex_small.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: aalokhin <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/26 14:57:54 by aalokhin          #+#    #+#             */
-/*   Updated: 2018/05/26 14:57:56 by aalokhin         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "printf.h"
 
 void				ft_hash_xs(char **str)
@@ -24,11 +12,8 @@ void				ft_hash_xs(char **str)
 	(*str) = ft_strnew(ft_strlen(res) + 2);
 	(*str)[0] = '0';
 	(*str)[1] = 'x';
-	(*str)[2] = '\0';
 	while (res[j] != '\0')
 		(*str)[i++] = res[j++];
-	(*str)[i] = '\0';
-	ft_strdel(&res);
 }
 
 void				hexs1(char **res, uintmax_t ival, t_flags *box)
@@ -36,17 +21,17 @@ void				hexs1(char **res, uintmax_t ival, t_flags *box)
 	if (box->hash && (box->zero || box->pre > box->wid))
 	{
 		box->wid -= 2;
-		(*res) = ft_dec_wp((*res), box);
+		ft_dec_wp(res, box);
 		ft_hash_xs(res);
 	}
 	else if ((box->hash && !box->zero &&\
 	!(box->pre == 0 && ival == 0 && box->wid == 0)))
 	{
 		ft_hash_xs(res);
-		(*res) = ft_dec_wp((*res), box);
+		ft_dec_wp(res, box);
 	}
 	else
-		(*res) = ft_dec_wp((*res), box);
+		ft_dec_wp(res, box);
 }
 
 void				hex_s(va_list ap, t_flags *box, size_t *count)
@@ -66,6 +51,6 @@ void				hex_s(va_list ap, t_flags *box, size_t *count)
 		res = ft_itoa_base_small(ival, 16);
 	hexs1(&res, ival, box);
 	ft_putstr2(res, count);
-	ft_strdel(&res);
+	//ft_strdel(&res);
 	fill_struct(box);
 }

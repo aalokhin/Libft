@@ -1,20 +1,8 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   step1.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: aalokhin <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/26 14:57:02 by aalokhin          #+#    #+#             */
-/*   Updated: 2018/05/26 14:57:04 by aalokhin         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "printf.h"
 
-void		fill_precision(char *str, t_flags *box, size_t *vasia)
+void		fill_precision(char *str, t_flags *box, int *vasia)
 {
-	size_t		i;
+	int		i;
 
 	i = (*vasia);
 	while (str[i] && str[i] != '.')
@@ -32,15 +20,12 @@ void		fill_precision(char *str, t_flags *box, size_t *vasia)
 	box->pre = collect(str, i);
 }
 
-size_t			collect(char *s, size_t i)
+int			collect(char *s, int i)
 {
 	size_t		len;
 	char		*nbr;
-	intmax_t	ret;
 
 	len = 0;
-	nbr = NULL;
-	ret = 0;
 	while (s[i] && ft_isdigit(s[i]))
 	{
 		len++;
@@ -48,22 +33,21 @@ size_t			collect(char *s, size_t i)
 	}
 	while (s[i] && !(ft_isdigit(s[i])))
 		i--;
-	if (!(nbr = ft_strnew(len)))
-		return (0);
-	nbr[len] = '\0';
+	nbr = ft_strnew(len);
+	nbr[len + 1] = '\0';
 	while (s[i] && ft_isdigit(s[i]))
 	{
 		nbr[--len] = s[i];
 		i--;
 	}
-	ret = ft_atoi_m(nbr);
-	ft_strdel(&nbr); //ftprintf.com
-	return (ret);
+	len = ft_atoi(nbr);
+	////////ft_strdel(&nbr);
+	return (len);
 }
 
 void		ft_fill_width(t_find *f, t_flags *box)
 {
-	size_t		i;
+	int		i;
 
 	i = f->va;
 	while (f->s[i] && SKIP(f->s[i]))
@@ -79,7 +63,7 @@ void		ft_fill_width(t_find *f, t_flags *box)
 	}
 }
 
-void		fill_mods(char *str, size_t i, t_flags *box)
+void		fill_mods(char *str, int i, t_flags *box)
 {
 	while (str[i] && MOD(str[i]))
 	{
@@ -106,7 +90,7 @@ void		fill_mods(char *str, size_t i, t_flags *box)
 	}
 }
 
-void		fill_flags(char *str, size_t i, t_flags *box)
+void		fill_flags(char *str, int i, t_flags *box)
 {
 	if (str[i] == '#')
 		(*box).hash = 1;
@@ -126,9 +110,9 @@ void		fill_flags(char *str, size_t i, t_flags *box)
 	}
 }
 
-void		ft_find_mods(char *str, t_flags *box, size_t *vasia)
+void		ft_find_mods(char *str, t_flags *box, int *vasia)
 {
-	size_t		i;
+	int		i;
 
 	i = (*vasia);
 	while (str[i] && SKIP(str[i]))
@@ -212,6 +196,27 @@ void		ft_percent_sign(t_find *f, va_list ap, t_flags *box)
 		f->va++;
 	}
 	percent_sign2(f, ap, box);
+	// if ((f->s[f->va] == 's' && box->mod == 'l') || f->s[f->va] == 'S')
+	// 	stroka_l(ap, box, &(f->count));
+	// else if (f->s[f->va] == 's')
+	// 	stroka(ap, box, &(f->count));
+	// else if (f->s[f->va] == 'd')
+	// 	decimal(ap, box, &(f->count));
+	// else if (f->s[f->va] == 'D')
+	// {
+	// 	box->mod = 'l';
+	// 	decimal(ap, box, &(f->count));
+	// }
+	// else if (f->s[f->va] == 'o')
+	// 	octal(ap, box, &(f->count));
+	// else if (f->s[f->va] == 'O')
+	// {
+	// 	box->mod = 'l';
+	// 	octal(ap, box, &(f->count));
+	// }
+	// else if (f->s[f->va] == 'u')
+	// 	ft_uns(ap, box, &(f->count));
+	
 	if (f->s[f->va] != '\0')
 		f->va++;
 }

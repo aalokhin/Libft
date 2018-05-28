@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   uns.c                                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: aalokhin <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/26 14:56:25 by aalokhin          #+#    #+#             */
-/*   Updated: 2018/05/26 14:56:28 by aalokhin         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "printf.h"
 
 void			ft_mod_u(uintmax_t *n, t_flags *box)
@@ -66,8 +54,8 @@ void			ft_uns(va_list ap, t_flags *box, size_t *count)
 		res = ft_strdup("");
 	else
 		res = ft_itoa_base(ival, 10);
-	res = ft_dec_wp(res, box);
+	ft_dec_wp(&res, box);
 	ft_putstr2(res, count);
-	ft_strdel(&res);
+	//ft_strdel(&res);
 	fill_struct(box);
 }
