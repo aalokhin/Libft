@@ -46,16 +46,19 @@ void			stroka(va_list ap, t_flags *box, size_t *count)
 {
 	char		*res;
 	char		*ival;
+	char		*tmp;
 
 	ival = NULL;
-	ival = va_arg(ap, char*);
+	tmp = va_arg(ap, char*);
 	if (box->pre == 0 && box->dot == 1)
 		ival = ft_strdup("");
-	if (ival == NULL)
-		res = ft_strdup("(null)");
+	else if (tmp == NULL)
+		ival = ft_strdup("(null)");
 	else
-		res = ft_str_wp(ival, box);
+		ival = ft_strdup(tmp);
+	res = ft_str_wp(ival, box);
 	ft_putstr2(res, count);
-	//ft_strdel(&res); //ft.com
+	ft_strdel(&ival);
+	ft_strdel(&res); //ft.com
 	fill_struct(box);
 }
