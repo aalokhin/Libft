@@ -50,6 +50,7 @@ void			stroka(va_list ap, t_flags *box, size_t *count)
 	char		*tmp;
 
 	ival = NULL;
+	res = NULL;
 	tmp = va_arg(ap, char*);
 	if (box->pre == 0 && box->dot == 1)
 		ival = ft_strdup("");
@@ -60,6 +61,6 @@ void			stroka(va_list ap, t_flags *box, size_t *count)
 	res = ft_str_wp(ival, box);
 	ft_putstr2(res, count);
 	//ft_strdel(&ival);
-	//ft_strdel(&res); //ft.com
+	ft_strdel(&res); //ft.com
 	fill_struct(box);
 }
