@@ -55,7 +55,6 @@ void				hex_s(va_list ap, t_flags *box, size_t *count)
 	char			*res;
 
 	ival = 0;
-	res = NULL;
 	if (box->dot)
 		box->zero = 0;
 	ival = va_arg(ap, uintmax_t);
@@ -65,10 +64,8 @@ void				hex_s(va_list ap, t_flags *box, size_t *count)
 		res = ft_strdup("");
 	else
 		res = ft_itoa_base_small(ival, 16);
-	if (res != NULL)
-		hexs1(&res, ival, box);
-	if (res != NULL)
-		ft_putstr2(res, count);
+	hexs1(&res, ival, box);
+	ft_putstr2(res, count);
 	ft_strdel(&res);
 	fill_struct(box);
 }

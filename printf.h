@@ -40,7 +40,7 @@
 typedef	struct	s_find
 {
 	char		*s;
-	size_t			va;
+	size_t		va;
 	size_t		count;
 }				t_find;
 
