@@ -70,7 +70,7 @@ void			dec1(intmax_t *ival, t_flags *box)
 	else
 	{
 		if (box->plus == 1)
-			box->sign = '+';
+			box->sign = '&';
 		if (box->space == 1)
 			box->sign = ' ';
 	}
