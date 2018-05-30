@@ -39,6 +39,7 @@ char			*ft_str_wp(char *ival, t_flags *box)
 		res = (box->minus) ? ft_strjoin_m(&res, &pre, 1) : ft_strjoin_m(&res, &pre, 2);
 		// ft_strdel(&pre);
 	}
+	ft_strdel(&ival);
 	return (res);
 }
 
@@ -58,7 +59,7 @@ void			stroka(va_list ap, t_flags *box, size_t *count)
 		ival = ft_strdup(tmp);
 	res = ft_str_wp(ival, box);
 	ft_putstr2(res, count);
-	ft_strdel(&ival);
-	ft_strdel(&res); //ft.com
+	//ft_strdel(&ival);
+	//ft_strdel(&res); //ft.com
 	fill_struct(box);
 }
