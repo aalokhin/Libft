@@ -64,7 +64,7 @@ size_t			collect(char *s, size_t i)
 	else
 		ret = 0;
 	
-	ft_strdel(&nbr); //ftprintf.com
+	//ft_strdel(&nbr); //ftprintf.com
 	return (ret);
 }
 
