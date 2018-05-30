@@ -37,49 +37,8 @@ size_t			collect(char *s, size_t i)
 	intmax_t	ret;
 
 	ret = ft_atoi_m(&s[i]);
-	//printf("\n >>>>>>%zu\n", ret);
-	 //ftprintf.com
 	return (ret);
 }
-
-
-
-
-// size_t			collect(char *s, size_t i)
-// {
-// 	size_t		len;
-// 	char		*nbr;
-// 	intmax_t	ret;
-
-// 	len = 0;
-// 	nbr = NULL;
-// 	ret = 0;
-// 	while (s[i] && ft_isdigit(s[i]))
-// 	{
-// 		len++;
-// 		i++;
-// 	}
-// 	while (s[i] && !(ft_isdigit(s[i])))
-// 		i--;
-// 	if (!(nbr = ft_strnew(len)))
-// 		return (0);
-// 	nbr[len] = '\0';
-// 	while (s[i] && ft_isdigit(s[i]))
-// 	{
-// 		nbr[--len] = s[i];
-// 		i--;
-// 	}
-// 	printf("\n>>>%s\n", nbr);
-// 	if (nbr)
-// 	{
-// 		ret = ft_atoi_m(nbr);
-// 		ft_strdel(&nbr);
-// 	}
-// 	else
-// 		ret = 0;
-// 	 //ftprintf.com
-// 	return (ret);
-// }
 
 void		ft_fill_width(t_find *f, t_flags *box)
 {

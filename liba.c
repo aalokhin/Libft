@@ -160,21 +160,21 @@ char	*ft_strjoin_m(char **s1, char **s2, int ch)
 	return (NULL);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
-{
-	char	*c;
+// char	*ft_strjoin(char const *s1, char const *s2)
+// {
+// 	char	*c;
 
-	if (!s1 || !s2)
-		return (NULL);
-	c = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-	if (c)
-	{
-		ft_strcpy(c, s1);
-		ft_strcat(c, s2);
-		return (c);
-	}
-	return (NULL);
-}
+// 	if (!s1 || !s2)
+// 		return (NULL);
+// 	c = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+// 	if (c)
+// 	{
+// 		ft_strcpy(c, s1);
+// 		ft_strcat(c, s2);
+// 		return (c);
+// 	}
+// 	return (NULL);
+// }
 
 void	ft_strdel(char **as)
 {
