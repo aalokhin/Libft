@@ -40,7 +40,7 @@ size_t			collect(char *s, size_t i)
 	return (ret);
 }
 
-void		ft_fill_width(t_find *f, t_flags *box)
+void			ft_fill_width(t_find *f, t_flags *box)
 {
 	size_t		i;
 
@@ -58,7 +58,7 @@ void		ft_fill_width(t_find *f, t_flags *box)
 	}
 }
 
-void		fill_mods(char *str, size_t i, t_flags *box)
+void			fill_mods(char *str, size_t i, t_flags *box)
 {
 	while (str[i] && MOD(str[i]))
 	{
@@ -85,7 +85,7 @@ void		fill_mods(char *str, size_t i, t_flags *box)
 	}
 }
 
-void		fill_flags(char *str, size_t i, t_flags *box)
+void			fill_flags(char *str, size_t i, t_flags *box)
 {
 	if (str[i] == '#')
 		(*box).hash = 1;
@@ -105,7 +105,7 @@ void		fill_flags(char *str, size_t i, t_flags *box)
 	}
 }
 
-void		ft_find_mods(char *str, t_flags *box, size_t *vasia)
+void			ft_find_mods(char *str, t_flags *box, size_t *vasia)
 {
 	size_t		i;
 
@@ -121,7 +121,7 @@ void		ft_find_mods(char *str, t_flags *box, size_t *vasia)
 	}
 }
 
-void		percent_sign3(t_find *f, va_list ap, t_flags *box)
+void			percent_sign3(t_find *f, va_list ap, t_flags *box)
 {
 	if (f->s[f->va] == 'U')
 		ft_uns_b(ap, box, &(f->count));
@@ -146,7 +146,7 @@ void		percent_sign3(t_find *f, va_list ap, t_flags *box)
 		decimal(ap, box, &(f->count));
 }
 
-void		percent_sign2(t_find *f, va_list ap, t_flags *box)
+void			percent_sign2(t_find *f, va_list ap, t_flags *box)
 {
 	if ((f->s[f->va] == 's' && box->mod == 'l') || f->s[f->va] == 'S')
 		stroka_l(ap, box, &(f->count));
@@ -172,7 +172,7 @@ void		percent_sign2(t_find *f, va_list ap, t_flags *box)
 		percent_sign3(f, ap, box);
 }
 
-void		ft_percent_sign(t_find *f, va_list ap, t_flags *box)
+void			ft_percent_sign(t_find *f, va_list ap, t_flags *box)
 {
 	while (f->s[f->va] != '\0' && !SPECIFIER(f->s[f->va]))
 	{

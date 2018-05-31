@@ -21,7 +21,6 @@ void	ft_memdel(void **ap)
 	}
 }
 
-
 void	*ft_memalloc(size_t size)
 {
 	unsigned char	*res;
@@ -33,10 +32,10 @@ void	*ft_memalloc(size_t size)
 	return ((void *)res);
 }
 
-intmax_t		ft_atoi_m(char *str)
+intmax_t	ft_atoi_m(char *str)
 {
-	int sign;
-	intmax_t res;
+	int				sign;
+	intmax_t		res;
 
 	res = 0;
 	sign = 1;
@@ -140,7 +139,6 @@ char	*ft_strjoin_m(char **s1, char **s2, int ch)
 	if (!(*s1) || !(*s2) || !s1 || !s2)
 		return (NULL);
 	c = (char*)malloc(sizeof(char) * (ft_strlen(*s1) + ft_strlen(*s2) + 1));
-		
 	if (c)
 	{
 		if (ch == 1)
@@ -159,22 +157,6 @@ char	*ft_strjoin_m(char **s1, char **s2, int ch)
 	}
 	return (NULL);
 }
-
-// char	*ft_strjoin(char const *s1, char const *s2)
-// {
-// 	char	*c;
-
-// 	if (!s1 || !s2)
-// 		return (NULL);
-// 	c = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-// 	if (c)
-// 	{
-// 		ft_strcpy(c, s1);
-// 		ft_strcat(c, s2);
-// 		return (c);
-// 	}
-// 	return (NULL);
-// }
 
 void	ft_strdel(char **as)
 {

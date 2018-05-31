@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   charbig.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aalokhin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/06/01 01:16:14 by aalokhin          #+#    #+#             */
+/*   Updated: 2018/06/01 01:16:16 by aalokhin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "printf.h"
 
 char			*ft_char_wp(unsigned int ival, t_flags *box)
@@ -21,23 +33,13 @@ char			*ft_char_wp(unsigned int ival, t_flags *box)
 	return (res);
 }
 
-// if (MB_CUR_MAX > 1)
-// 		uc_printing(params, &elems, uc);
-// 	else
-// 		write(1, &uc, 1);
-// 	print_left(params);
-
-
 void			print_char(unsigned int ival, size_t *count)
 {
-	
 	if (ival < 255)
 	{
 		write(1, &ival, 1);
 		(*count)++;
 	}
-	else if (MB_CUR_MAX == 1)
-		return ;
 	else if (ival >= 255 && ival <= 2047)
 		u2(2, ival, count);
 	else if (ival > 2047 && ival <= 65535)
@@ -49,16 +51,12 @@ void			print_char(unsigned int ival, size_t *count)
 void			char_b(va_list ap, t_flags *box, size_t *count)
 {
 	unsigned int		ival;
-	char			*res;
+	char				*res;
 
 	ival = va_arg(ap, unsigned int);
-	//printf("~~~~~~~~~~~~~%d\n", MB_CUR_MAX == 1);
-	//printf(">>>>>%u\n", ival);
 	res = ft_char_wp(ival, box);
 	if (!box->minus)
 		ft_putstr2(res, count);
-
-
 	if (MB_CUR_MAX > 1)
 		print_char(ival, count);
 	else

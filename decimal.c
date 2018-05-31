@@ -12,7 +12,7 @@
 
 #include "printf.h"
 
-char*	dec2(int len, char *res, t_flags *box)
+char			*dec2(int len, char *res, t_flags *box)
 {
 	char	*pre;
 
@@ -33,10 +33,10 @@ char*	dec2(int len, char *res, t_flags *box)
 		else
 			res = ft_strjoin_m(&res, &pre, 2);
 	}
-	return(res);
+	return (res);
 }
 
-char* 	ft_dec_wp(char *res, t_flags *box)
+char			*ft_dec_wp(char *res, t_flags *box)
 {
 	int		len;
 	char	*pre;

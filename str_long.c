@@ -33,7 +33,6 @@ size_t			count_check(unsigned int *s, size_t size)
 			check += 4;
 		i++;
 	}
-
 	return (size - check);
 }
 
@@ -42,7 +41,6 @@ void			print_us_1(unsigned int *s, size_t *count, size_t size)
 	size_t		i;
 	size_t		check;
 	size_t		len;
-
 
 	check = 0;
 	i = 0;
@@ -104,16 +102,9 @@ void			stroka_l(va_list ap, t_flags *box, size_t *count)
 {
 	size_t			len;
 	char			*res;
-	unsigned int		*ival;
+	unsigned int	*ival;
 
 	ival = va_arg(ap, unsigned int *);
-	// int f = 0;
-	// while (f < 6)
-	// {
-
-	// 	printf("%u\n", ival[f]);
-	// 	f++;
-	// }
 	if (ival == NULL)
 	{
 		ft_putstr2("(null)", count);

@@ -59,16 +59,13 @@ typedef struct	s_flags
 	char		specifier;
 }				t_flags;
 
-// void	ft_strjoin_m(char **s1, char **s2, int c);
 char			*ft_dec_wp(char *res, t_flags *box);
 char			*ft_strjoin_m(char **s1, char **s2, int c);
 void			ft_memdel(void **ap);
-
 void			hexs1(char **res, uintmax_t ival, t_flags *box);
 char			*dec2(int len, char *res, t_flags *box);
 void			dec1(intmax_t *ival, t_flags *box);
 void			fill_mods(char *str, size_t i, t_flags *box);
-
 size_t			collect(char *str, size_t i);
 void			ft_uns(va_list ap, t_flags *box, size_t *count);
 void			ft_invalid(int	ival, t_flags *box, size_t *count);
@@ -106,7 +103,6 @@ void			ft_m_putnbr(int n, size_t *count);
 char			*ft_strnew(size_t size);
 void			charik(va_list ap, t_flags *box, size_t *count);
 void			ft_pre(intmax_t n, size_t *count, t_flags *box);
-// void			ft_dec_wp(char	**res, t_flags *box);
 void			ft_mod(intmax_t *n, t_flags *box);
 void			decimal(va_list ap, t_flags *box, size_t *count);
 void			ft_percent_sign(t_find	*f, va_list ap, t_flags *box);
@@ -126,7 +122,6 @@ void			ft_strdel(char **as);
 char			*ft_strjoin(char const *s1, char const *s2);
 char			*ft_strcpy(char *dst, const char *src);
 char			*ft_strcat(char *s1, const char *s2);
-// char			*ft_strjoin(char const *s1, char const *s2);
 void			*ft_memset(void *str, int c, size_t n);
 char			*ft_strncpy(char *dst, const char *src, size_t len);
 char			*ft_itoa_base(uintmax_t value, int base);
