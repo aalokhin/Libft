@@ -1,6 +1,6 @@
 #include "printf.h"
 
-char			*ft_char_wp(wchar_t ival, t_flags *box)
+char			*ft_char_wp(unsigned int ival, t_flags *box)
 {
 	size_t		len;
 	size_t		i;
@@ -21,14 +21,24 @@ char			*ft_char_wp(wchar_t ival, t_flags *box)
 	return (res);
 }
 
-void			print_char(wchar_t ival, size_t *count)
+// if (MB_CUR_MAX > 1)
+// 		uc_printing(params, &elems, uc);
+// 	else
+// 		write(1, &uc, 1);
+// 	print_left(params);
+
+
+void			print_char(unsigned int ival, size_t *count)
 {
-	if (ival <= 127)
+	
+	if (ival < 255)
 	{
 		write(1, &ival, 1);
 		(*count)++;
 	}
-	else if (ival > 127 && ival <= 2047)
+	else if (MB_CUR_MAX == 1)
+		return ;
+	else if (ival >= 255 && ival <= 2047)
 		u2(2, ival, count);
 	else if (ival > 2047 && ival <= 65535)
 		u3(3, ival, count);
@@ -38,20 +48,21 @@ void			print_char(wchar_t ival, size_t *count)
 
 void			char_b(va_list ap, t_flags *box, size_t *count)
 {
-	wchar_t		ival;
-	char		*res;
+	unsigned int		ival;
+	char			*res;
 
-	ival = va_arg(ap, wchar_t);
+	ival = va_arg(ap, unsigned int);
+	//printf("~~~~~~~~~~~~~%d\n", MB_CUR_MAX == 1);
+	//printf(">>>>>%u\n", ival);
 	res = ft_char_wp(ival, box);
 	if (!box->minus)
 		ft_putstr2(res, count);
-	if (MB_CUR_MAX == 1 && ival <= 127)
-	{
-		write(1, &ival, 1);
-		(*count)++;
-	}
-	else
+
+
+	if (MB_CUR_MAX > 1)
 		print_char(ival, count);
+	else
+		write(1, &ival, 1);
 	if (box->minus)
 		ft_putstr2(res, count);
 	ft_strdel(&res);

@@ -12,7 +12,7 @@
 
 #include "printf.h"
 
-size_t			count_check(wchar_t *s, size_t size)
+size_t			count_check(unsigned int *s, size_t size)
 {
 	size_t		i;
 	size_t		check;
@@ -23,9 +23,9 @@ size_t			count_check(wchar_t *s, size_t size)
 	len = ft_w_strlen(s);
 	while (s[i] != '\0' && i < len)
 	{
-		if (s[i] <= 127 && (check + 1) <= size)
+		if (s[i] < 255 && (check + 1) <= size)
 			check += 1;
-		else if (s[i] > 127 && s[i] <= 2047 && (check + 2) <= size)
+		else if (s[i] >= 255 && s[i] <= 2047 && (check + 2) <= size)
 			check += 2;
 		else if (s[i] > 2047 && s[i] <= 65535 && (check + 3) <= size)
 			check += 3;
@@ -33,27 +33,29 @@ size_t			count_check(wchar_t *s, size_t size)
 			check += 4;
 		i++;
 	}
+
 	return (size - check);
 }
 
-void			print_us_1(wchar_t *s, size_t *count, size_t size)
+void			print_us_1(unsigned int *s, size_t *count, size_t size)
 {
 	size_t		i;
 	size_t		check;
 	size_t		len;
+
 
 	check = 0;
 	i = 0;
 	len = ft_w_strlen(s);
 	while (s[i] != '\0' && i < len)
 	{
-		if (s[i] <= 127 && (check + 1) <= size)
+		if (s[i] < 255 && (check + 1) <= size)
 		{
 			write(1, &s[i], 1);
 			(*count)++;
 			check += 1;
 		}
-		else if (s[i] > 127 && s[i] <= 2047 && (check + 2) <= size)
+		else if (s[i] >= 255 && s[i] <= 2047 && (check + 2) <= size)
 		{
 			u2(2, s[i], count);
 			check += 2;
@@ -72,7 +74,7 @@ void			print_us_1(wchar_t *s, size_t *count, size_t size)
 	}
 }
 
-char			*ft_ls_wp(wchar_t *ival, t_flags *box)
+char			*ft_ls_wp(unsigned int *ival, t_flags *box)
 {
 	size_t		len;
 	size_t		i;
@@ -100,12 +102,18 @@ char			*ft_ls_wp(wchar_t *ival, t_flags *box)
 
 void			stroka_l(va_list ap, t_flags *box, size_t *count)
 {
-	size_t		len;
-	char		*res;
-	wchar_t		*ival;
+	size_t			len;
+	char			*res;
+	unsigned int		*ival;
 
-	ival = NULL;
-	ival = va_arg(ap, wchar_t *);
+	ival = va_arg(ap, unsigned int *);
+	// int f = 0;
+	// while (f < 6)
+	// {
+
+	// 	printf("%u\n", ival[f]);
+	// 	f++;
+	// }
 	if (ival == NULL)
 	{
 		ft_putstr2("(null)", count);
@@ -125,8 +133,6 @@ void			stroka_l(va_list ap, t_flags *box, size_t *count)
 	print_us_1(ival, count, len);
 	if (box->minus)
 		ft_putstr2(res, count);
-	// if (box->pre == 0 && box->dot == 1)
-	// 	ft_memdel(&ival);
 	ft_strdel(&res);
 	fill_struct(box);
 }
