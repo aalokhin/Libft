@@ -36,38 +36,45 @@ size_t			count_check(unsigned int *s, size_t size)
 	return (size - check);
 }
 
+void			check_print(t_s *a, size_t *count)
+{
+	if (a->j < 255 && (a->check + 1) <= a->size)
+	{
+		write(1, &(a->j), 1);
+		(*count)++;
+		a->check += 1;
+	}
+	else if (a->j >= 255 && a->j <= 2047 && (a->check + 2) <= a->size)
+	{
+		u2(2, a->j, count);
+		a->check += 2;
+	}
+	else if (a->j > 2047 && a->j <= 65535 && (a->check + 3) <= a->size)
+	{
+		u3(3, a->j, count);
+		a->check += 3;
+	}
+	else if (a->j > 65535 && a->j <= 1114111 && (a->check + 4) <= a->size)
+	{
+		u4(4, a->j, count);
+		a->check += 4;
+	}
+}
+
 void			print_us_1(unsigned int *s, size_t *count, size_t size)
 {
+	t_s			a;
 	size_t		i;
-	size_t		check;
 	size_t		len;
 
-	check = 0;
+	a.check = 0;
+	a.size = size;
 	i = 0;
 	len = ft_w_strlen(s);
 	while (s[i] != '\0' && i < len)
 	{
-		if (s[i] < 255 && (check + 1) <= size)
-		{
-			write(1, &s[i], 1);
-			(*count)++;
-			check += 1;
-		}
-		else if (s[i] >= 255 && s[i] <= 2047 && (check + 2) <= size)
-		{
-			u2(2, s[i], count);
-			check += 2;
-		}
-		else if (s[i] > 2047 && s[i] <= 65535 && (check + 3) <= size)
-		{
-			u3(3, s[i], count);
-			check += 3;
-		}
-		else if (s[i] > 65535 && s[i] <= 1114111 && (check + 4) <= size)
-		{
-			u4(4, s[i], count);
-			check += 4;
-		}
+		a.j = s[i];
+		check_print(&a, count);
 		i++;
 	}
 }
@@ -116,8 +123,7 @@ void			stroka_l(va_list ap, t_flags *box, size_t *count)
 		ft_bzero(ival, 1);
 	}
 	len = ft_w_strlen(ival);
-	if (box->pre < len && box->pre != 0 && len != 0)
-		len = box->pre;
+	len = (box->pre < len && box->pre != 0 && len != 0) ? box->pre : len;
 	res = ft_ls_wp(ival, box);
 	if (!box->minus)
 		ft_putstr2(res, count);

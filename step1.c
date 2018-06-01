@@ -12,7 +12,7 @@
 
 #include "printf.h"
 
-void		fill_precision(char *str, t_flags *box, size_t *vasia)
+void			fill_precision(char *str, t_flags *box, size_t *vasia)
 {
 	size_t		i;
 

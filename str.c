@@ -14,32 +14,31 @@
 
 char			*ft_str_wp(char *ival, t_flags *box)
 {
-	size_t		len;
-	char		*pre;
-	char		*res;
+	t_l			h;
 
-	len = ft_strlen(ival);
-	res = NULL;
-	if (box->pre < len && box->pre != 0 && len != 0)
+	h.len = ft_strlen(ival);
+	h.res = NULL;
+	if (box->pre < h.len && box->pre != 0 && h.len != 0)
 	{
-		res = ft_strnew(box->pre);
-		ft_strncpy(res, ival, box->pre);
-		res[box->pre] = '\0';
+		h.res = ft_strnew(box->pre);
+		ft_strncpy(h.res, ival, box->pre);
+		h.res[box->pre] = '\0';
 	}
 	else
-		res = ft_strdup(ival);
-	if (box->wid > (len = ft_strlen(res)))
+		h.res = ft_strdup(ival);
+	if (box->wid > (h.len = ft_strlen(h.res)))
 	{
-		pre = ft_strnew(box->wid - len);
+		h.pre = ft_strnew(box->wid - h.len);
 		if (box->zero)
-			pre = ft_memset(pre, '0', box->wid - len);
+			h.pre = ft_memset(h.pre, '0', box->wid - h.len);
 		else
-			pre = ft_memset(pre, ' ', box->wid - len);
-		pre[box->wid - len] = '\0';
-		res = (box->minus) ? ft_strjoin_m(&res, &pre, 1) : ft_strjoin_m(&res, &pre, 2);
+			h.pre = ft_memset(h.pre, ' ', box->wid - h.len);
+		h.pre[box->wid - h.len] = '\0';
+		h.res = (box->minus) ? ft_strjoin_m(&h.res, &h.pre, 1)\
+		: ft_strjoin_m(&h.res, &h.pre, 2);
 	}
 	ft_strdel(&ival);
-	return (res);
+	return (h.res);
 }
 
 void			stroka(va_list ap, t_flags *box, size_t *count)
