@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   unicode.c                                          :+:      :+:    :+:   */
+/*   ucode.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aalokhin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/26 15:02:50 by aalokhin          #+#    #+#             */
-/*   Updated: 2018/05/26 15:02:52 by aalokhin         ###   ########.fr       */
+/*   Created: 2018/06/01 04:25:04 by aalokhin          #+#    #+#             */
+/*   Updated: 2018/06/01 04:25:07 by aalokhin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,27 +121,5 @@ size_t			ft_char_len(unsigned int c)
 		len += 3;
 	else if (c > 65535 && c <= 1114111)
 		len += 4;
-	return (len);
-}
-
-size_t			ft_w_strlen(unsigned int *str)
-{
-	size_t		i;
-	size_t		len;
-
-	i = 0;
-	len = 0;
-	while (str[i] != 0)
-	{
-		if (str[i] < 255)
-			len++;
-		else if (str[i] >= 255 && str[i] <= 2047)
-			len += 2;
-		else if (str[i] > 2047 && str[i] <= 65535)
-			len += 3;
-		else if (str[i] > 65535 && str[i] <= 1114111)
-			len += 4;
-		i++;
-	}
 	return (len);
 }

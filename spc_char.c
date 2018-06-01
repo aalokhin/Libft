@@ -1,26 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   charik.c                                           :+:      :+:    :+:   */
+/*   spc_char.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aalokhin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/26 15:01:20 by aalokhin          #+#    #+#             */
-/*   Updated: 2018/05/26 15:01:23 by aalokhin         ###   ########.fr       */
+/*   Created: 2018/06/01 04:27:21 by aalokhin          #+#    #+#             */
+/*   Updated: 2018/06/01 04:27:23 by aalokhin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
-
-void		ft_found(t_find *f, va_list ap, t_flags *box)
-{
-	fill_struct(box);
-	ft_fill_width(f, box);
-	fill_precision(f->s, box, &f->va);
-	ft_find_flags(f->s, box, &f->va);
-	ft_find_mods(f->s, box, &f->va);
-	ft_percent_sign(f, ap, box);
-}
 
 void		ft_invalid(int ival, t_flags *box, size_t *count)
 {
