@@ -21,6 +21,7 @@ void				ft_hash_x(char **str)
 	j = 0;
 	i = 2;
 	res = ft_strdup(*str);
+	ft_strdel(&(*str));
 	(*str) = ft_strnew(ft_strlen(res) + 2);
 	(*str)[0] = '0';
 	(*str)[1] = 'X';
@@ -54,6 +55,7 @@ void				hex_b(va_list ap, t_flags *box, size_t *count)
 	uintmax_t		ival;
 	char			*res;
 
+	res = NULL;
 	ival = 0;
 	if (box->dot)
 		box->zero = 0;

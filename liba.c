@@ -193,6 +193,7 @@ char	*ft_strnew(size_t size)
 		i++;
 	}
 	str[i] = '\0';
+	
 	return (str);
 }
 
